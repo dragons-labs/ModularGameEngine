@@ -1,0 +1,23 @@
+BUILD FROM SOURCE
+=================
+
+git clone https://github.com/OGRECave/ogre-next
+cd ogre-next
+
+patch -p1 < ${MGE_DIR}/README/BUILD.deps/ogre-python.diff  # PR#265
+
+mkdir build; cd build
+
+cmake -DOGRE_BUILD_SAMPLES2=0 ..  # or simple `cmake ..` if you want Ogre Samples
+make -j5
+sudo make install; sudo ldconfig
+
+
+build and check with version
+----------------------------
+
+commit 08e9d74994681a6f04ea6f3cb2a44aeae23670f2 (HEAD -> master, origin/master, origin/HEAD)
+Author: Matias N. Goldberg <dark_sylinc@yahoo.com.ar>
+Date:   Sun May 12 21:06:30 2024 -0300
+
+    Fix doc typo

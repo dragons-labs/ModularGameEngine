@@ -1,0 +1,164 @@
+<!-- NO_DOXYGEN_START -->
+<html>
+<head>
+	<title>README</title>
+	<meta http-equiv="ContentType" charset="utf-8" content="text/html; charset=utf-8" />
+</head>
+<body>
+<!-- NO_DOXYGEN_END -->
+<!--<img style="float: right; padding: 5px; border: 0px none;" width="600px" alt="logo" src="MGE_LOGO.svg" />-->
+
+<!-- NO_DOXYGEN_LINE --><h1>README</h1><!-- NO_DOXYGEN_LINE -->
+
+<h2>ABOUT</h2>
+<p>
+Modular Game Engine is game engine written in C++20 and using: Ogre 3D, OIS, CEGUI, Python, Boost, OpenAL (via OgreOggSound), Bullet (via BtOgre).
+<br /><br />
+Modular Game Engine is free and open source software available under permissive license (MIT License).
+It contains some pieces of code from other projects developed under MIT License, Zlib license, Public Domain (un)licence. 
+See full copyright info in <a href="#COPYRIGHT">COPYRIGHT</a>.
+</p>
+
+<h3>Main engine feature:</h3>
+<ul>
+	<li>small and simple<ul>
+		<li>direct use of graphics, physics, etc libraries</li>
+		<li>avoids create own implementations of classes that are contained in the used libraries</li>
+		<li>(if you know used libraries, you don't have to waste time learning new APIs for them)</li>
+	</ul></li>
+	<li>modular designed:<ul>
+		<li>game world, logic, missions, GUI elements and any game objects are "modules" / "plugins"</li>
+		<li>actions, dialogs, etc are python script</li>
+		<li>modular design of engine code</li>
+		<li>GUI appearance is setting in xml files</li>
+		<li>Python3 script system and API</li>
+	</ul></li>
+	<li>XML config and saves (mostly cases used the same syntax)<ul>
+		<li>allows easy modification game behavior</li>
+		<li>allows use the same methods for save-restore and config-load</li>
+	</ul></li>
+	<li>decent graphics (via OGRE) and sound (via OpenAL) with 2D and 3D support</li>
+	<li>decent physics (via Bullet)</li>
+	<li>support for:<ul>
+		<li>actors, objects selection</li>
+		<li>actions (context) menu</li>
+		<li>different action target: world point, objects list, area, polygonal chain</li>
+		<li>actors action queued</li>
+		<li>dialog menu with audio support</li>
+		<li>interactive textures for: CEGUI, web browser, VNC (probably this is first computer game engine with builtin VNC client), ...</li>
+	</ul></li>
+	<li>flexible system of camera mangament with:<ul>
+		<li>simple support for RTS-style camera movement and object attached camera</li>
+		<li>support for multiple view (view from other camera in sub-window)</li>
+	</ul></li>
+	<li>object (actor) properties system (to do something we need object with correct feature, not specified object)</li>
+	<li>game speed regulation witch active and full pause option</li>
+	<li>desing not as single library, but as framework with generic engine modules, application initialization modules and application logic modules</li>
+</ul>
+
+
+<h3>More info:</h3>
+<ul>
+	<li><a href="./modules.html">Code Documentation - Modules</a></li>
+	<li><a href="./PythonScriptsAPI.html">Pythonn Script API Documentation</a></li>
+	<li><a href="./ConfigFiles.html">Configuration Files Documentation</a></li>
+	<li><a href="./other.html">Other Topics</a></li>
+</ul>
+
+<h3>Engine components relations</h3>
+
+<img src="EngineComponents.svg" />
+
+<h2 id="BUILD_AND_RUN">BUILD AND RUN</h2>
+<ol>
+	<li>Install dependencies - see <a href="./BUILD.deps">README/BUILD.deps</a> for info. Order is important.</li>
+	<li>Create build dir and enter to it (all next commands should be run in this directory): <br /><code>mkdir build; cd build</code></li>
+	<li>Run cmake with <code>CMAKE_CXX_COMPILER</code> set to selected compiler and with path to <code>SRC</code> directory: <br /><code>cmake -D CMAKE_CXX_COMPILER=clang++ ..</code></li>
+	<li>Run make: <br /><code>make -j 5</code></li>
+	<li>Run game: <br /><code>./Game</code></li>
+</ol>
+
+<h2 id="COPYRIGHT">COPYRIGHT</h2>
+<pre>
+<b>Copyright (c) 2013-2024 Robert Ryszard Paciorek &lt;rrp@opcode.eu.org&gt;</b>
+
+<b>The MIT License:</b>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+<b>3th parts code and libraries:</b>
+
+Used pieces of code from:
+    - OGRE           <a href="http://www.ogre3d.org/">http://www.ogre3d.org/</a>                          MIT License
+    - OGRE WIKI      <a href="http://www.ogre3d.org/tikiwiki/">http://www.ogre3d.org/tikiwiki/</a>                 Public Domain
+    - Ogitor         <a href="https://github.com/OGRECave/ogitor/">https://github.com/OGRECave/ogitor/</a>             MIT License
+    - MicroPather    <a href="https://github.com/leethomason/MicroPather/">https://github.com/leethomason/MicroPather/</a>     Zlib Licence
+    - CEF OSR        <a href="http://github.com/qwertzui11/cef_osr">http://github.com/qwertzui11/cef_osr</a>            Public Domain
+    - OIS            <a href="https://wgois.github.io/OIS/">https://wgois.github.io/OIS/</a>                    Zlib Licence
+    - X11            <a href="http://x.org/">http://x.org/</a>                                   MIT License
+
+In some part inspired by (tutorials, samples, demos, headers, ...) code from used libraries:
+    - BtOgre2        <a href="https://github.com/Ybalrid/BtOgre2">https://github.com/Ybalrid/BtOgre2</a>              Zlib license
+    - Bullet         <a href="http://bulletphysics.org/">http://bulletphysics.org/</a>                       Zlib license
+    - CEGUI          <a href="http://www.cegui.org.uk/">http://www.cegui.org.uk/</a>                        MIT License
+    - CEF            <a href="http://bitbucket.org/chromiumembedded/cef">http://bitbucket.org/chromiumembedded/cef</a>       BSD License
+    - OgreAudioVideo <a href="https://github.com/OGRECave/ogre-audiovideo">https://github.com/OGRECave/ogre-audiovideo</a>     MIT + BSD Licence
+    - Python         <a href="http://www.python.org/">http://www.python.org/</a>                          Python Software Foundation License (BSD-style license)
+    - Boost          <a href="http://www.boost.org/">http://www.boost.org/</a>                           Boost Software License
+Full copyright info in <a href="./ADDITIONAL_COPYRIGHT">ADDITIONAL_COPYRIGHT</a> directory.
+
+Used library:
+    required:
+        - OGRE                   <a href="http://www.ogre3d.org/">http://www.ogre3d.org/</a>                          MIT License
+            - FreeImage          <a href="http://freeimage.sourceforge.net">http://freeimage.sourceforge.net</a>                FIPL (copyleft licence) or GPLv2 or GPLv3
+                - libjpeg-turbo  <a href="https://libjpeg-turbo.org/">https://libjpeg-turbo.org/</a>                      BSD + Zlib + IJG (BSD-type) Licence
+            - RapidJSON          <a href="https://miloyip.github.io/rapidjson/">https://miloyip.github.io/rapidjson/</a>            Expat License (MIT license variant)
+            - zziplib            <a href="http://zziplib.sourceforge.net/">http://zziplib.sourceforge.net/</a>                 GNU Library General Public License
+        - OIS                    <a href="https://wgois.github.io/OIS/">https://wgois.github.io/OIS/</a>                    Zlib Licence
+        - OgreAudioVideo         <a href="https://github.com/OGRECave/ogre-audiovideo">https://github.com/OGRECave/ogre-audiovideo</a>     MIT + BSD License
+            - OpenAL             <a href="http://kcat.strangesoft.net/openal.html">http://kcat.strangesoft.net/openal.html</a>         GNU Library General Public License
+            - Ogg                <a href="https://www.xiph.org/ogg/">https://www.xiph.org/ogg/</a>                       BSD License
+            - Vorbis             <a href="https://www.xiph.org/vorbis/">https://www.xiph.org/vorbis/</a>                    BSD License
+            - Theora             <a href="https://www.theora.org/">https://www.theora.org/</a>                         BSD License
+        - CEGUI                  <a href="http://www.cegui.org.uk/">http://www.cegui.org.uk/</a>                        MIT License
+            - FreeType           <a href="http://www.freetype.org/">http://www.freetype.org/</a>                        FTL (BSD-style license with a credit clause) or GPLv2
+            - PCRE               <a href="http://www.pcre.org/">http://www.pcre.org/</a>                            BSD License
+            - Expat              <a href="https://libexpat.github.io/">https://libexpat.github.io/</a>                     Expat License (MIT license variant)
+            - GLM                <a href="https://glm.g-truc.net/">https://glm.g-truc.net/</a>                         Expat License (MIT license variant)
+        - Python                 <a href="http://www.python.org/">http://www.python.org/</a>                          Python Software Foundation License (BSD-style license)
+        - Boost                  <a href="http://www.boost.org/">http://www.boost.org/</a>                           Boost Software License
+        - libpng                 <a href="http://www.libpng.org/">http://www.libpng.org/</a>                          Zlib Licence
+    optional:
+        - BtOgre2                <a href="https://github.com/Ybalrid/BtOgre2">https://github.com/Ybalrid/BtOgre2</a>              Zlib license
+            - Bullet             <a href="http://bulletphysics.org/">http://bulletphysics.org/</a>                       Zlib license
+        - CEF                    <a href="http://bitbucket.org/chromiumembedded/cef">http://bitbucket.org/chromiumembedded/cef</a>       BSD License
+        - X11                    <a href="http://x.org/">http://x.org/</a> (unix build)                      MIT License
+        - POCO                   <a href="https://pocoproject.org/">https://pocoproject.org/</a> (mingw build)          Boost Software License
+        - OGRE
+            - TinyXml            <a href="https://libexpat.github.io/">https://libexpat.github.io/</a> (OgreMeshTool)      Zlib Licence
+Full copyright info in <a href="./ADDITIONAL_COPYRIGHT">ADDITIONAL_COPYRIGHT</a> directory.
+
+For resources (modes, textures, sound, fonts, ...) copyright info see COPYRIGHT*.txt files in "resources" directory.
+</pre>
+
+<!-- NO_DOXYGEN_START -->
+</body>
+</html>
+<!-- NO_DOXYGEN_END -->

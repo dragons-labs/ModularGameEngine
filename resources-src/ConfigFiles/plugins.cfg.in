@@ -1,0 +1,6 @@
+# Defines plugins to load
+
+PluginFolder=@OGRE_PLUGINS_DIR@
+
+Plugin=@OGRE_RENDER_SYSTEM@
+Plugin=@OGRE_PLUGIN_PARTICLEFX@

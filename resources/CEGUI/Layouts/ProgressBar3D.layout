@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static" name="bg">
+		<Property name="Position"               value="{{0,0}, {0,0}}" />
+		<Property name="Size"                   value="{{1,0}, {1,0}}" />
+		<Property name="BackgroundColours"      value="30ffffff" />
+		<Property name="FrameColours"           value="00000000" />
+		
+		<Window type="ProgressBar" name="pb">
+		<Property name="BackgroundColours"      value="80ff0000" />
+			<Property name="FrameColours"       value="00000000" />
+			<Property name="Position"           value="{{0.04,0}, {0.1,0}}" />
+			<Property name="Size"               value="{{0.92,0}, {0.8,0}}" />
+		</Window>
+	</Window>
+</GUILayout>

@@ -1,0 +1,17 @@
+fragment_program TexturePass.FragmentProgram.GLSL glsl {
+	source TexturePass_ps.glsl
+}
+
+fragment_program TexturePass.FragmentProgram.HLSL hlsl {
+	source TexturePass_ps.hlsl
+}
+
+fragment_program TexturePass.FragmentProgram.Metal metal {
+	source TexturePass_ps.metal
+}
+
+fragment_program TexturePass.FragmentProgram unified {
+	delegate TexturePass.FragmentProgram.GLSL
+	delegate TexturePass.FragmentProgram.HLSL
+	delegate TexturePass.FragmentProgram.Metal
+}

@@ -1,0 +1,667 @@
+diff --git a/CMake/OgreFeatureSummary.cmake b/CMake/OgreFeatureSummary.cmake
+index c1786e2caf..8f0c6ce691 100644
+--- a/CMake/OgreFeatureSummary.cmake
++++ b/CMake/OgreFeatureSummary.cmake
+@@ -30,6 +30,9 @@ endif ()
+ if (OGRE_BUILD_COMPONENT_PROPERTY)
+ 	set(_components "${_components}  + Property\n")
+ endif ()
++if (OGRE_BUILD_COMPONENT_PYTHON)
++	set(_components "${_components}  + Python [BETA]\n")
++endif ()
+ if (OGRE_BUILD_COMPONENT_SCENE_FORMAT)
+ 	set(_components "${_components}  + SceneFormat\n")
+ endif ()
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index da8354dec6..8c845f2dd8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -518,6 +518,7 @@ cmake_dependent_option(OGRE_BUILD_COMPONENT_MESHLODGENERATOR "Build MeshLodGener
+ cmake_dependent_option(OGRE_BUILD_COMPONENT_VOLUME "Build Volume component" FALSE "" FALSE)
+ cmake_dependent_option(OGRE_BUILD_COMPONENT_PROPERTY "Build Property component" FALSE "Boost_FOUND" FALSE)
+ cmake_dependent_option(OGRE_BUILD_COMPONENT_OVERLAY "Build Overlay component" TRUE "FREETYPE_FOUND OR OGRE_BUILD_PLATFORM_WINRT OR OGRE_BUILD_PLATFORM_WINDOWS_PHONE" FALSE)
++cmake_dependent_option(OGRE_BUILD_COMPONENT_PYTHON "Build Python bindings with SWIG" TRUE "NOT OGRE_STATIC" FALSE)
+ cmake_dependent_option(OGRE_BUILD_LIBS_AS_FRAMEWORKS "Build frameworks for libraries on OS X." TRUE "APPLE;NOT OGRE_BUILD_PLATFORM_APPLE_IOS" FALSE)
+ 
+ option(OGRE_BUILD_SAMPLES2 "Build Ogre new demos (2.1)" TRUE)
+diff --git a/Components/CMakeLists.txt b/Components/CMakeLists.txt
+index 8d61d14332..bba36c0858 100644
+--- a/Components/CMakeLists.txt
++++ b/Components/CMakeLists.txt
+@@ -51,3 +51,7 @@ endif ()
+ if (OGRE_BUILD_COMPONENT_OVERLAY)
+ 	add_subdirectory(Overlay)
+ endif ()
++
++if (OGRE_BUILD_COMPONENT_PYTHON)
++    add_subdirectory(Python)
++endif()
+diff --git a/Components/Python/CMakeLists.txt b/Components/Python/CMakeLists.txt
+new file mode 100644
+index 0000000000..da62a1cec5
+--- /dev/null
++++ b/Components/Python/CMakeLists.txt
+@@ -0,0 +1,58 @@
++set(Python_ADDITIONAL_VERSIONS 3.4) # allows using python3 on Ubuntu 14.04
++find_package(PythonInterp)
++find_package(PythonLibs)
++macro_log_feature(PYTHONLIBS_FOUND "Python" "Language bindings to use OGRE from Python" "http://www.python.org/" FALSE "" "")
++
++find_package(SWIG 3.0.8)
++
++if(NOT PYTHONLIBS_FOUND OR NOT SWIG_FOUND)
++    set(OGRE_BUILD_COMPONENT_PYTHON OFF CACHE BOOL "" FORCE)
++    message(WARNING "Python ${PYTHONLIBS_FOUND} ${SWIG_FOUND}")
++    message(WARNING "Python Component disabled because SWIG or Python was not found")
++    return()
++endif()
++
++include_directories(${PYTHON_INCLUDE_PATH})
++include_directories("${PROJECT_BINARY_DIR}/include" "${PROJECT_SOURCE_DIR}/OgreMain/include" "${PROJECT_SOURCE_DIR}/Components/Hlms/Common/include" "${PROJECT_SOURCE_DIR}/Components/Hlms/Pbs/include" "${PROJECT_SOURCE_DIR}/Components/Hlms/Unlit/include")
++include(${SWIG_USE_FILE})
++
++set(PYTHON_SITE_PACKAGES lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/dist-packages/)
++
++set(CMAKE_SWIG_FLAGS -builtin)
++
++if (APPLE AND NOT ANDROID)
++    # we are using libc++ on OSX
++    list(APPEND CMAKE_SWIG_FLAGS -D_LIBCPP_VERSION)
++endif()
++
++macro(ogre_python_module target)
++    set_target_properties(${SWIG_MODULE_${target}_REAL_NAME} PROPERTIES 
++                        DEBUG_POSTFIX "")
++    install(TARGETS ${SWIG_MODULE_${target}_REAL_NAME} LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES})
++    install(FILES ${PROJECT_BINARY_DIR}/Components/Python/${target}.py DESTINATION ${PYTHON_SITE_PACKAGES})
++endmacro()
++
++if(MSVC)
++	# TODO: Set MSVC flags
++	add_definitions(-DMS_NO_COREDLL)
++else()
++	add_definitions(-Wno-cast-qual -Wno-shadow -Wno-maybe-uninitialized -Wno-unused-label -Wno-unused-but-set-variable -Wno-missing-declarations)
++endif()
++set_source_files_properties(Ogre.i PROPERTIES CPLUSPLUS ON)
++swig_add_module(Ogre python Ogre.i)
++swig_link_libraries(Ogre OgreMain OgreHlmsPbs OgreHlmsUnlit ${PYTHON_LIBRARIES})
++ogre_python_module(Ogre)
++
++# if(OGRE_BUILD_COMPONENT_RTSHADERSYSTEM)
++#     set_source_files_properties(../RTShaderSystem/include/OgreRTShader.i PROPERTIES CPLUSPLUS ON)
++#     swig_add_module(OgreRTShader python ../RTShaderSystem/include/OgreRTShader.i)
++#     swig_link_libraries(OgreRTShader OgreMain OgreRTShaderSystem ${PYTHON_LIBRARIES})
++#     ogre_python_module(OgreRTShader)
++# endif()
++# 
++# if(OGRE_BUILD_COMPONENT_OVERLAY)
++#     set_source_files_properties(../Overlay/include/OgreOverlay.i PROPERTIES CPLUSPLUS ON)
++#     swig_add_module(OgreOverlay python ../Overlay/include/OgreOverlay.i)
++#     swig_link_libraries(OgreOverlay OgreMain OgreOverlay ${PYTHON_LIBRARIES})
++#     ogre_python_module(OgreOverlay)
++# endif()
+diff --git a/Components/Python/Ogre.i b/Components/Python/Ogre.i
+new file mode 100644
+index 0000000000..ac1c42e9f3
+--- /dev/null
++++ b/Components/Python/Ogre.i
+@@ -0,0 +1,212 @@
++%module(directors="1") Ogre
++
++// SWIG setting for expose Python API
++%include PythonAPI.i
++
++// Global rename politics:
++// - rename all nested classes "Ogre::A::B" into "A_B"
++%rename("%(regex:/^(Ogre)?(::)?([^:]+)(::)?(.*?)$/\\3_\\5/)s", fullname=1, %$isnested, regextarget=1) "^Ogre::[^:]+::";
++// - rename elements from Ogre::XX namespace to XX_{element_name},
++%rename("%(regex:/^(Ogre)?(::)?([^:]+)(::)?(.*?)$/\\3_\\5/)s", fullname=1, %$not %$ismember, %$not %$isconstructor, %$not %$isdestructor, regextarget=1) "^Ogre::[^:<]+::[^:<]+";
++
++
++// STD
++%include std_shared_ptr.i
++%include std_string.i
++%include std_pair.i
++%include std_deque.i
++%include std_list.i
++%include std_map.i
++%include std_set.i
++%include std_multimap.i
++%include std_unordered_map.i
++%include std_unordered_set.i
++%include std_vector.i
++%include exception.i
++%include typemaps.i
++%include stdint.i
++
++// Ogre STD
++%include ogrestd/deque.h
++%include ogrestd/list.h
++%include ogrestd/map.h
++%include ogrestd/set.h
++%include ogrestd/unordered_map.h
++%include ogrestd/unordered_set.h
++%include ogrestd/vector.h
++
++
++// define some macros (to make possible parsing headers via %include)
++%include "OgrePlatform.h"
++#define _OgreExport
++#define _OgrePrivate
++#define OGRE_DEPRECATED
++#undef  FORCEINLINE
++#define FORCEINLINE
++#define final
++#define noexcept(a)
++
++// add headers and some definition to output C++ file
++%{
++	#include "Ogre.h"
++	using namespace Ogre;
++	
++	#ifdef __GNUC__
++	#pragma GCC diagnostic ignored "-Wcast-function-type"
++	#pragma GCC diagnostic ignored "-Wunused-parameter"
++	#pragma GCC diagnostic ignored "-Wunused-label"
++	#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
++	#pragma GCC diagnostic ignored "-Wunused-variable"
++	#endif
++	
++	#include <sstream>
++%}
++
++
++// basic Ogre types
++%include "OgreBasic.i"
++
++// node, scene node, movable object
++
++%include "OgreNode.h"
++%include "OgreSceneNode.h"
++%ignore Ogre::MovableObject::calculateCameraDistance; // is not defined (FIXME why public member is 'static inline'?)
++%include "OgreMovableObject.h"
++%include "OgreUserObjectBindings.h"
++
++// scene manager
++
++%{
++	#include "OgreSceneManager.h"
++	typedef SceneManager::RenderContext RenderContext;
++%}
++%ignore Ogre::SceneManager::updateAllBounds;
++%ignore Ogre::SceneManager::getCameras; // FIXME protected typedef for CameraList
++%ignore Ogre::SceneManager::getCameraIterator;
++%ignore Ogre::SceneManager::getAnimations;
++%ignore Ogre::SceneManager::getAnimationIterator;
++%ignore Ogre::SceneManager::getAnimationStateIterator;
++%include "OgreSceneManager.h"
++
++// compositor
++
++%include "initHLMS.i" // TODO see comment in this file
++
++%{
++#include <Compositor/OgreCompositorManager2.h>
++#include <Compositor/OgreCompositorWorkspace.h>
++#include <Compositor/OgreCompositorNode.h>
++%}
++%ignore Ogre::CompositorManager2::connectOutput; // FIXME is not defined (only declaration in OgreCompositorManager2.h file)
++%include "Compositor/OgreCompositorManager2.h"
++%include "Compositor/OgreCompositorWorkspace.h"
++%include "Compositor/OgreCompositorNode.h"
++
++// resources
++
++%include "OgreResourceGroupManager.h"
++%include "OgreResourceManager.h"
++//%include "OgreResourceBackgroundQueue.h"
++%{
++#include "OgreResourceManager.h"
++typedef  Ogre::ResourceManager::ResourceCreateOrRetrieveResult ResourceCreateOrRetrieveResult;
++#include "OgreArchiveFactory.h"
++%}
++%include "OgreArchive.h"
++%include "OgreArchiveFactory.h"
++%include "OgreArchiveManager.h"
++%{
++#include "OgreZip.h"
++%}
++%include "OgreZip.h"
++%{
++#include "OgreSerializer.h"
++typedef Ogre::Serializer::Endian Endian;
++%}
++%include "OgreSerializer.h"
++
++%include "OgreResource.h"
++
++%include "OgreMaterialManager.h"
++%include "OgreRenderable.h"
++
++// textures
++
++%{
++#include <OgreTextureGpu.h>
++#include <OgreTextureGpuManager.h>
++#include <OgreTextureBox.h>
++%}
++%ignore Ogre::GpuResidency::toString;
++%include "OgreGpuResource.h"
++%ignore Ogre::TextureGpuManager::taskLoadToSysRamOrResident; // FIXME ScheduledTasks (argument type of public member) is protected within this context
++%ignore Ogre::TextureGpuManager::taskToUnloadOrDestroy; // FIXME ScheduledTasks (argument type of public member) is protected within this context
++%ignore Ogre::TextureGpuManager::executeTask; // FIXME ScheduledTasks (argument type of public member) is protected within this context
++%include "OgreTextureGpu.h"
++%include "OgreTextureGpuManager.h"
++%include "OgreTextureGpuListener.h"
++
++%include "OgreImage2.h"
++%include "OgreBlendMode.h"
++
++// item and other movable object derived class
++
++%{
++	#include "OgreItem.h"
++%}
++%ignore Ogre::Item::clone; // FIXME is not defined (disabled by #if 0 in OgreItem.cpp, but not in OgreItem.h)
++%include "OgreItem.h"
++%include "OgreSubItem.h"
++
++%ignore Ogre::Light::isInLightRange; // FIXME is not defined (only declaration in OgreLight.h file)
++%ignore Ogre::Light::getTypeFlags; // FIXME is not defined (only declaration in OgreLight.h file and use in disabled by #ifdef ENABLE_INCOMPATIBLE_OGRE_2_0 part of OgreDefaultSceneQueries.cpp)
++%include "OgreLight.h"
++%include "OgreFrustum.h"
++%include "OgreCamera.h"
++
++%{
++	typedef Ogre::v1::Billboard Billboard;
++	typedef Ogre::v1::BillboardSet BillboardSet;
++	typedef Ogre::v1::RenderOperation RenderOperation;
++%}
++%include "OgreBillboard.h"
++%include "OgreBillboardChain.h"
++%include "OgreRibbonTrail.h"
++%include "OgreBillboardSet.h"
++
++%{
++	typedef Ogre::v1::SubEntity SubEntity;
++	typedef Ogre::v1::VertexData VertexData;
++	typedef Ogre::v1::EdgeData EdgeData;
++	typedef Ogre::v1::AnimationStateSet AnimationStateSet;
++	typedef Ogre::v1::AnimationState AnimationState;
++	typedef Ogre::v1::OldSkeletonInstance OldSkeletonInstance;
++%}
++%ignore Ogre::v1::Entity::getTypeFlags; // FIXME is not defined (only declaration in OgreEntity.h file and use in disabled by #ifdef ENABLE_INCOMPATIBLE_OGRE_2_0 part of OgreDefaultSceneQueries.cpp)
++%include "OgreEntity.h"
++%include "OgreSubEntity.h"
++
++
++// Listeners and Utils
++
++%include "OgreFrameListener.h"
++%include "OgreLodListener.h"
++%include "OgreController.h"
++%{
++typedef Ogre::ControllerFunction< Ogre::Real > ControllerFunction_Real;
++#include "OgrePredefinedControllers.h"
++%}
++%template(ControllerFunction_Real) Ogre::ControllerFunction< Ogre::Real >;
++%template(ControllerValue_Real) Ogre::ControllerValue< Ogre::Real >;
++%include "OgrePredefinedControllers.h"
++
++// Root, Window and RenderSystem
++
++%ignore Ogre::Root::getSceneManagerMetaDataIterator;
++%ignore Ogre::Root::getSceneManagerIterator;
++%include "OgreRoot.h"
++%{
++#include <OgreWindow.h>
++%}
++%include "OgreWindow.h"
++%include "OgreRenderSystem.h"
+diff --git a/Components/Python/OgreBasic.i b/Components/Python/OgreBasic.i
+new file mode 100644
+index 0000000000..6273fcff32
+--- /dev/null
++++ b/Components/Python/OgreBasic.i
+@@ -0,0 +1,112 @@
++%include "OgrePrerequisites.h"
++%template(NameValuePairList) std::map<Ogre::String, Ogre::String>;
++
++%ignore Ogre::HashedVector::operator=;
++%ignore Ogre::TRect::operator=;
++%include "OgreCommon.h"
++%template(Rect) Ogre::TRect<long>;
++%template(FloatRect) Ogre::TRect<float>;
++
++%include "OgreMemoryAllocatorConfig.h"
++
++%warnfilter(509) Ogre::IdObject::operator();
++%include "OgreId.h"
++%ignore Ogre::IdString::Seed; // is static const
++%include "OgreIdString.h"
++
++%include "OgreStringInterface.h"
++%include "OgreStringVector.h"
++%template(StringVector) std::vector<Ogre::String>;  // actual vector<T>
++%template(StringVectorPtr) Ogre::SharedPtr<std::vector<Ogre::String> >;
++
++%ignore Ogre::Any::operator=;
++%ignore Ogre::any_cast;
++%include "OgreAny.h"
++
++
++%ignore Ogre::Angle;
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Radian, Radian, =, const Degree&, set)
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Radian, Radian, =, const Real&, set)
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Degree, Degree, =, const Radian&, set)
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Degree, Degree, =, const Real&, set)
++%include "OgreMath.h"
++ADD_REPR(Radian)
++ADD_REPR(Degree)
++
++
++%warnfilter(509) Ogre::Vector2::Vector2;
++%warnfilter(509) Ogre::Vector2::operator[];
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Vector2, Vector2, =, const Real, set)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, *, const Vector2&,  Vector2, multi)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, /, const Vector2&,  Vector2, div)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, +, const Vector2&,  Vector2, add)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, -, const Vector2&,  Vector2, sub)
++%ignore operator+( const Vector2&, const Real );
++%ignore operator-( const Vector2&, const Real );
++%include "OgreVector2.h"
++ADD_REPR(Vector2)
++
++%warnfilter(509) Ogre::Vector3::Vector3;
++%warnfilter(509) Ogre::Vector3::operator[];
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Vector3, Vector3, =, const Real, set)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, *, const Vector3&,  Vector3, multi)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, /, const Vector3&,  Vector3, div)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, +, const Vector3&,  Vector3, add)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, -, const Vector3&,  Vector3, sub)
++%ignore operator+( const Vector3&, const Real );
++%ignore operator-( const Vector3&, const Real );
++%include "OgreVector3.h"
++ADD_REPR(Vector3)
++
++%warnfilter(509) Ogre::Vector4::Vector4;
++%warnfilter(509) Ogre::Vector4::operator[];
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Vector4, Vector4, =, const Real, set)
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(Vector4, Vector4, =, const Vector3&, set)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, *, const Vector4&,  Vector4, multi)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, /, const Vector4&,  Vector4, div)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, +, const Vector4&,  Vector4, add)
++OPERATOR_TO_MEMBER_FUNCTION_SHORT(const Real, -, const Vector4&,  Vector4, sub)
++%ignore operator+( const Vector4&, const Real );
++%ignore operator-( const Vector4&, Real );
++%include "OgreVector4.h"
++ADD_REPR(Vector4)
++
++OPERATOR_TO_MEMBER_FUNCTION(Vector3, const Vector3&, *, const Matrix3&,  Matrix3, multi)
++OPERATOR_TO_MEMBER_FUNCTION(Matrix3, Real, *, const Matrix3&,  Matrix3, multi)
++%include "OgreMatrix3.h"
++ADD_REPR(Matrix3)
++
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(void, Matrix4, =, const Matrix3&, set)
++%include "OgreMatrix4.h"
++ADD_REPR(Matrix4)
++
++%warnfilter(509) Ogre::Quaternion::operator[];
++%rename(Real_Multiply_Quaternion) operator*( Real, const Quaternion& );
++%include "OgreQuaternion.h"
++ADD_REPR(Quaternion)
++
++%warnfilter(509) Ogre::ColourValue::operator[];
++%ignore operator*( const float, const ColourValue& );
++%include "OgreColourValue.h"
++ADD_REPR(ColourValue)
++
++%include "Math/Simple/OgreAabb.h"
++
++CLASS_OPERATOR_TO_MEMBER_FUNCTION(AxisAlignedBox, AxisAlignedBox, =, const AxisAlignedBox&, set)
++%include "OgreAxisAlignedBox.h"
++
++%include "OgreRay.h"
++%include "OgrePlaneBoundedVolume.h"
++%include "OgreSceneQuery.h"
++%template(RaySceneQueryResult) std::vector<Ogre::RaySceneQueryResultEntry>;
++
++%ignore Ogre::Exception::operator=;
++%rename(OgreException) Ogre::Exception; // conflicts with Python Exception
++%include "OgreException.h"
++
++%ignore Ogre::SharedPtr::operator=;
++%include "OgreSharedPtr.h" 
++
++%ignore Ogre::ResourceAccess::toString;
++%include "OgreIteratorWrapper.h"
++%include "OgreResourceTransition.h"
+diff --git a/Components/Python/PythonAPI.i b/Components/Python/PythonAPI.i
+new file mode 100644
+index 0000000000..46b6d4de34
+--- /dev/null
++++ b/Components/Python/PythonAPI.i
+@@ -0,0 +1,59 @@
++// convert c++ exceptions to language native exceptions
++%exception {
++    try {
++        $action
++    }
++    catch (Swig::DirectorException &e) { 
++        SWIG_fail;
++    }
++    catch (const std::exception& e) {
++        SWIG_exception(SWIG_RuntimeError, e.what());
++    }
++}
++
++// connect operator<< to tp_repr
++%ignore ::operator<<;
++%feature("python:slot", "tp_repr", functype="reprfunc") *::__repr__;
++
++%define ADD_REPR(classname)
++%extend Ogre::classname {
++    const std::string __repr__() {
++        std::ostringstream out;
++        out << *$self;
++        return out.str();
++    }
++}
++%enddef
++
++// connect operator[] to __getitem__
++%feature("python:slot", "sq_item", functype="ssizeargfunc") *::operator[];
++%rename(__getitem__) *::operator[];
++
++%feature("flatnested");
++%feature("autodoc", "1");
++%feature("director") *Listener;
++%feature("director") *::Listener;
++
++// SWIG macros for convert free operator to member function
++%define OPERATOR_TO_MEMBER_FUNCTION(returnType, argTypeA, operatorName, argTypeB, className, functionName)
++	%ignore operator operatorName (argTypeA, argTypeB);
++	%extend Ogre::className {
++		returnType functionName(argTypeA x) {
++			return *$self operatorName x;
++		}
++	}
++%enddef
++
++%define OPERATOR_TO_MEMBER_FUNCTION_SHORT(argTypeA, operatorName, argTypeB, className, functionName)
++	OPERATOR_TO_MEMBER_FUNCTION(className, argTypeA, operatorName, argTypeB, className, functionName)
++%enddef
++
++// SWIG macro for convert class operator to member function
++%define CLASS_OPERATOR_TO_MEMBER_FUNCTION(returnType, className, operatorName, argType, functionName)
++	%ignore Ogre::className::operator operatorName ( argType );
++	%extend Ogre::className {
++		returnType functionName(argType x) {
++			return *$self operatorName x;
++		}
++	}
++%enddef
+diff --git a/Components/Python/initHLMS.i b/Components/Python/initHLMS.i
+new file mode 100644
+index 0000000000..8e812e59c1
+--- /dev/null
++++ b/Components/Python/initHLMS.i
+@@ -0,0 +1,87 @@
++%{
++#include <OgreArchiveManager.h>
++#include <OgreHlmsManager.h>
++#include <OgreHlmsUnlit.h>
++#include <OgreHlmsPbs.h>
++%}
++
++// TODO this is not good place for this function ... but is lot of code used in almost any Ogre based project without changes (changes structure of HLMS dirs is not recomended, HMLS resorces must be upgraded with Ogre, etc ...), so maybe Ogre API should provide those helper function?
++
++%inline %{
++void initHLMS(const Ogre::String& path, const Ogre::String& debugPath = Ogre::BLANKSTRING) {
++	Ogre::ArchiveManager &archiveManager = Ogre::ArchiveManager::getSingleton();
++	const Ogre::String rootHlmsFolder(path);
++	const Ogre::String archiveType("FileSystem");
++	Ogre::String mainFolderPath;
++	Ogre::StringVector libraryFoldersPaths;
++	Ogre::StringVector::const_iterator libraryFolderPathIt;
++	Ogre::StringVector::const_iterator libraryFolderPathEn;
++	
++	Ogre::HlmsUnlit *hlmsUnlit = 0;
++	Ogre::HlmsPbs *hlmsPbs = 0;
++	
++	// Create & Register HlmsUnlit
++	{
++		// Get the path to all the subdirectories used by HlmsUnlit
++		Ogre::HlmsUnlit::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
++		Ogre::Archive *archiveUnlit = archiveManager.load( rootHlmsFolder + mainFolderPath, archiveType, true );
++		
++		// Get the library archive(s)
++		Ogre::ArchiveVec archiveUnlitLibraryFolders;
++		libraryFolderPathIt = libraryFoldersPaths.begin();
++		libraryFolderPathEn = libraryFoldersPaths.end();
++		while( libraryFolderPathIt != libraryFolderPathEn )
++		{
++			Ogre::Archive *archiveLibrary = archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, archiveType, true );
++			archiveUnlitLibraryFolders.push_back( archiveLibrary );
++			++libraryFolderPathIt;
++		}
++		
++		// Create and register the unlit Hlms
++		hlmsUnlit = OGRE_NEW Ogre::HlmsUnlit( archiveUnlit, &archiveUnlitLibraryFolders );
++		if (debugPath != Ogre::BLANKSTRING)
++			hlmsUnlit->setDebugOutputPath(true, true, debugPath);
++		else
++			hlmsUnlit->setDebugOutputPath(false, false);
++		Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsUnlit );
++	}
++	
++	// Create & Register HlmsPbs
++	{
++		Ogre::HlmsPbs::getDefaultPaths( mainFolderPath, libraryFoldersPaths );
++		Ogre::Archive *archivePbs = archiveManager.load( rootHlmsFolder + mainFolderPath, archiveType, true );
++		
++		Ogre::ArchiveVec archivePbsLibraryFolders;
++		libraryFolderPathIt = libraryFoldersPaths.begin();
++		libraryFolderPathEn = libraryFoldersPaths.end();
++		while( libraryFolderPathIt != libraryFolderPathEn )
++		{
++			Ogre::Archive *archiveLibrary = archiveManager.load( rootHlmsFolder + *libraryFolderPathIt, archiveType, true );
++			archivePbsLibraryFolders.push_back( archiveLibrary );
++			++libraryFolderPathIt;
++		}
++		
++		hlmsPbs = OGRE_NEW Ogre::HlmsPbs( archivePbs, &archivePbsLibraryFolders );
++		if (debugPath != Ogre::BLANKSTRING)
++			hlmsPbs->setDebugOutputPath(true, true, debugPath);
++		else
++			hlmsPbs->setDebugOutputPath(false, false);
++		Ogre::Root::getSingleton().getHlmsManager()->registerHlms( hlmsPbs );
++	}
++	
++	// fixes for 3D11 ...
++	Ogre::RenderSystem *renderSystem = Ogre::Root::getSingleton().getRenderSystem();
++	if( renderSystem->getName() == "Direct3D11 Rendering Subsystem" ) {
++		//Set lower limits 512kb instead of the default 4MB per Hlms in D3D 11.0
++		//and below to avoid saturating AMD's discard limit (8MB) or
++		//saturate the PCIE bus in some low end machines.
++		bool supportsNoOverwriteOnTextureBuffers;
++		renderSystem->getCustomAttribute( "MapNoOverwriteOnDynamicBufferSRV", &supportsNoOverwriteOnTextureBuffers );
++		
++		if( !supportsNoOverwriteOnTextureBuffers ) {
++			hlmsPbs->setTextureBufferDefaultSize( 512 * 1024 );
++			hlmsUnlit->setTextureBufferDefaultSize( 512 * 1024 );
++		}
++	}
++}
++%}
+diff --git a/Components/Python/testRun.py b/Components/Python/testRun.py
+new file mode 100644
+index 0000000000..f6149a207b
+--- /dev/null
++++ b/Components/Python/testRun.py
+@@ -0,0 +1,65 @@
++import Ogre
++
++# Ogre & rendering window init
++
++root = Ogre.Root("../../bin/plugins.cfg", "../../bin/ogre.cfg", "/tmp/ogre.log")
++root.restoreConfig() or root.showConfigDialog()
++window = root.initialise(True, "Ogre Python")
++
++# resources init
++
++Ogre.initHLMS("/usr/local/share/OGRE/Media/")
++
++# scene manager init
++
++scnMgr = root.createSceneManager("DefaultSceneManager", 1, "testSceneMenager")
++
++# scene setup
++
++if "mode" in globals() and mode == "loading screen":
++	for path in ["resources/LoadingScreen", "resources/LoadingScreen/scripts", "resources/LoadingScreen/shaders"]:
++		path = "/01-Game/SRC/" + path
++		Ogre.ResourceGroupManager.getSingleton().addResourceLocation( path, "FileSystem", "LoadingScreen", False )
++	Ogre.ResourceGroupManager.getSingleton().initialiseResourceGroup("LoadingScreen", True);
++	cameraName = "LoadingScreen"
++else:
++	Ogre.ResourceGroupManager.getSingleton().addResourceLocation( "/01-Game/resources/SampleMod/Media/Models", "FileSystem", "SceneAssets", True )
++	Ogre.ResourceGroupManager.getSingleton().initialiseResourceGroup("SceneAssets", True);
++	
++	node = scnMgr.getRootSceneNode().createChildSceneNode()
++	item = scnMgr.createItem("Dragon/dragon.mesh");
++	node.attachObject(item)
++	node.setPosition(20, 20, 20)
++	
++	#node = scnMgr.getRootSceneNode().createChildSceneNode()
++	#light = scnMgr.createLight()
++	#node.attachObject(light)
++	#node.setPosition(10, 10, 10)
++	#light.setType(Ogre.Light.LT_POINT)
++	#light.setDiffuseColour(Ogre.ColourValue(0, 0, 1))
++	#light.setSpecularColour(Ogre.ColourValue(1, 0, 0))
++	#light.setAttenuationBasedOnRadius(20, 0)
++	
++	scnMgr.setForwardClustered( True, 16, 16, 8, 8, 4, 4, 1, 32 );
++	scnMgr.setAmbientLight(Ogre.ColourValue(.5, .5, .5, 1), Ogre.ColourValue(.5, .5, .5, 1), Ogre.Vector3(0, 1, 0), 1)
++	
++	cameraName = "LoadingScreen"
++
++# camera init
++
++camera = scnMgr.createCamera(cameraName)
++camera.lookAt(Ogre.Vector3(10,10,10))
++camera.setNearClipDistance(1)
++
++# compositor init
++
++compMgr = root.getCompositorManager2()
++if not compMgr.hasWorkspaceDefinition(Ogre.IdString("Workspace"+cameraName)):
++	compMgr.createBasicWorkspaceDef("Workspace"+cameraName, Ogre.ColourValue( 0.0, 0.4, 0.0 ));
++
++workspace = compMgr.addWorkspace( scnMgr, window.getTexture(), camera, Ogre.IdString("Workspace"+cameraName), True, -1 )
++
++# wait for textures and render
++
++root.getRenderSystem().getTextureGpuManager().waitForStreamingCompletion()
++root.renderOneFrame()

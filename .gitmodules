@@ -1,0 +1,3 @@
+[submodule "SampleMod"]
+	path = SampleMod
+	url = ../ModularGameEngine-SampleMod

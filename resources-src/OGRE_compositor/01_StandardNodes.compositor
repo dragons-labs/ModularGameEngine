@@ -1,0 +1,92 @@
+// PREPOCESS: this file need be preprocessed to replace names from RenderQueueGroups
+// PREPOCESS: enum (engine/utils/misc/enums.h) by render queue numeric values
+
+compositor_node MainRendering {
+	in 0 rt_renderwindow
+	
+	target rt_renderwindow {
+		pass clear {
+			colour_value 0.2 0.4 0.6 1
+		}
+		
+		// Render sky after opaque stuff (performance optimization)
+		pass render_quad {
+			quad_normals   camera_direction
+			material       SkyPostprocess
+		}
+		
+		// Render transparent stuff after sky
+		pass render_scene {
+			overlays   on
+			rq_first   BACKGROUND_V2
+			rq_last    STENCIL_GLOW_OBJECT_V2
+		}
+		
+		// clear only stencil buffer
+		pass clear {
+			buffers stencil
+		}
+		
+		// set marker in stencil buffer for STENCIL_GLOW_OBJECT pixels
+		pass stencil {
+			check       true
+			ref_value   1
+			mask        0xff
+			read_mask   0xff
+			both {
+				comp_func      always_pass
+				pass_op        replace
+				depth_fail_op  keep
+				fail_op        keep
+			}
+		}
+		pass render_scene {
+			rq_first   STENCIL_GLOW_OBJECT_V2
+			rq_last    STENCIL_GLOW_OUTLINE_V2
+		}
+		
+		// render STENCIL_GLOW_OUTLINE only for pixels with not set STENCIL_GLOW_OBJECT marker
+		pass stencil {
+			check       true
+			ref_value   1
+			mask        0xff
+			read_mask   0xff
+			both {
+				comp_func      not_equal
+				pass_op        keep
+				depth_fail_op  keep
+				fail_op        keep
+			}
+		}
+		pass render_scene {
+			rq_first   STENCIL_GLOW_OUTLINE_V2
+			rq_last    GUI_3D_V2
+		}
+		
+// 		pass stencil {
+// 			check       true
+// 			ref_value   1
+// 			mask        0xff
+// 			read_mask   0xff
+// 			both {
+// 				comp_func      equal
+// 				pass_op        keep
+// 				depth_fail_op  keep
+// 				fail_op        keep
+// 			}
+// 		}
+// 		pass render_quad {
+// 			material LoadingScreen
+// 		}
+		
+		// disable stencil buffer
+		pass stencil {
+			check       false
+		}
+		
+		pass render_scene {
+			rq_first   GUI_3D_V2
+			rq_last    STOP_RENDER_QUEUE
+		}
+	}
+}

@@ -1,0 +1,20 @@
+<Mission>
+	<StateFile path="conf/editor.state.xml" />
+	
+	<environment>
+		<!-- default scene lighting, this can be override by <environment> → <ambientLight> in .scene.xml file, but is needed for file without lightings -->
+		<ambientLight>
+			<upperHemisphere r="0.9" g="0.9" b="0.9" a="1"/>
+			<lowerHemisphere r="0.8" g="0.8" b="0.8" a="1"/>
+		</ambientLight>
+	</environment>
+	
+	<EditorModule rotateSpeedFactor="8.0" negScaleFactor="3.0" posScaleFactor="6.0" axisGizmoSizeFactor="35">
+		<SelectionMarker markerType="OBBOX NO_THICKNESS CORNER_BOX" linesThickness="0">
+			<Color r="0.916" g="0.88" b="0.53" />
+		</SelectionMarker>
+		<Marker3D meshFile="Marker3D.mesh" />
+		<ListMeshesFromGroup>MGE_EngineMedia</ListMeshesFromGroup>
+		<ListMeshesFromGroup>Map_Scene</ListMeshesFromGroup>
+	</EditorModule>
+</Mission>

@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" Name="MGE_GUI">
+	<Imageset  filename="MGE_GUI.imageset" />
+	<LookNFeel filename="MGE_GUI.looknfeel" />
+	<LookNFeel filename="MGE_GUI.looknfeel.subwidges" />
+	<LookNFeel filename="MGE_GUI.looknfeel.others" />
+	<Font filename="DefaultFont.font" />
+	<Font filename="DejaVu.font" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+
+	<!-- windows -->
+	<FalagardMapping windowType="Static"                   targetType="DefaultWindow"           renderer="Core/Static"            lookNFeel="Static" />
+	<FalagardMapping windowType="StaticImage"              targetType="DefaultWindow"           renderer="Core/StaticImage"       lookNFeel="StaticImage" />
+	<FalagardMapping windowType="InteractiveTexture"       targetType="DefaultWindow"           renderer="Core/StaticImage"       lookNFeel="StaticImage" />
+	<FalagardMapping windowType="StaticText"               targetType="DefaultWindow"           renderer="Core/StaticText"        lookNFeel="StaticText" />
+	<FalagardMapping windowType="FrameWindow"              targetType="CEGUI/FrameWindow"       renderer="Core/FrameWindow"       lookNFeel="FrameWindow" />
+	
+	<!-- widgets -->
+	<FalagardMapping windowType="Button"                   targetType="CEGUI/PushButton"        renderer="Core/Button"            lookNFeel="Button" />
+	<FalagardMapping windowType="Checkbox"                 targetType="CEGUI/ToggleButton"      renderer="Core/ToggleButton"      lookNFeel="Checkbox" />
+	<FalagardMapping windowType="Editbox"                  targetType="CEGUI/Editbox"           renderer="Core/Editbox"           lookNFeel="Editbox" />
+	<FalagardMapping windowType="MultiLineEditbox"         targetType="CEGUI/MultiLineEditbox"  renderer="Core/MultiLineEditbox"  lookNFeel="MultiLineEditbox" />
+	<FalagardMapping windowType="Spinner"                  targetType="CEGUI/Spinner"           renderer="Core/Default"           lookNFeel="Spinner" />
+	<FalagardMapping windowType="Combobox"                 targetType="CEGUI/Combobox"          renderer="Core/Default"           lookNFeel="Combobox" />
+	<FalagardMapping windowType="ComboboxUpward"           targetType="CEGUI/Combobox"          renderer="Core/Default"           lookNFeel="ComboboxUpward" />
+	<FalagardMapping windowType="MultiColumnList"          targetType="CEGUI/MultiColumnList"   renderer="Core/MultiColumnList"   lookNFeel="MultiColumnList" />
+	<FalagardMapping windowType="ListWidget"               targetType="CEGUI/ListWidget"        renderer="Core/ListView"          lookNFeel="ListView" />
+	<FalagardMapping windowType="ScrollablePane"           targetType="CEGUI/ScrollablePane"    renderer="Core/ScrollablePane"    lookNFeel="ScrollablePane" />
+	<FalagardMapping windowType="ProgressBar"              targetType="CEGUI/ProgressBar"       renderer="Core/ProgressBar"       lookNFeel="ProgressBar" />
+	<FalagardMapping windowType="PopupMenu"                targetType="CEGUI/PopupMenu"         renderer="Core/PopupMenu"         lookNFeel="PopupMenu" />
+
+	<!-- subwidgets (widges not used directly in window layout, used only for widgets or windows looknfeel) -->
+	<FalagardMapping windowType="IconButton"               targetType="CEGUI/PushButton"        renderer="Core/Button"            lookNFeel="IconButton" />
+	<FalagardMapping windowType="SystemButton"             targetType="CEGUI/PushButton"        renderer="Core/Button"            lookNFeel="SystemButton" />
+	<FalagardMapping windowType="VerticalScrollbarThumb"   targetType="CEGUI/Thumb"             renderer="Core/Button"            lookNFeel="VerticalScrollbarThumb" />
+	<FalagardMapping windowType="VerticalScrollbar"        targetType="CEGUI/Scrollbar"         renderer="Core/Scrollbar"         lookNFeel="VerticalScrollbar" />
+	<FalagardMapping windowType="HorizontalScrollbarThumb" targetType="CEGUI/Thumb"             renderer="Core/Button"            lookNFeel="HorizontalScrollbarThumb" />
+	<FalagardMapping windowType="HorizontalScrollbar"      targetType="CEGUI/Scrollbar"         renderer="Core/Scrollbar"         lookNFeel="HorizontalScrollbar" />
+	<FalagardMapping windowType="ComboDropList"            targetType="CEGUI/ComboDropList"     renderer="Core/ListView"          lookNFeel="ComboDropList" />
+	<FalagardMapping windowType="ListHeader"               targetType="CEGUI/ListHeader"        renderer="Core/ListHeader"        lookNFeel="ListHeader" />
+	<FalagardMapping windowType="ListHeaderSegment"        targetType="CEGUI/ListHeaderSegment" renderer="Core/ListHeaderSegment" lookNFeel="ListHeaderSegment" />
+	<FalagardMapping windowType="Titlebar"                 targetType="CEGUI/Titlebar"          renderer="Core/Titlebar"          lookNFeel="Titlebar" />
+	<FalagardMapping windowType="MenuItem"                 targetType="CEGUI/MenuItem"          renderer="Core/MenuItem"          lookNFeel="MenuItem" />
+	<FalagardMapping windowType="Tooltip"                  targetType="CEGUI/Tooltip"           renderer="Core/Tooltip"           lookNFeel="Tooltip" />
+	<FalagardMapping windowType="ListboxItem"              targetType="CEGUI/ItemEntry"         renderer="Core/ItemEntry"         lookNFeel="ListboxItem" />
+
+	
+	<!-- UNUSED see MGE_GUI.looknfeel.others -->
+	<!--FalagardMapping windowType="RadioButton" targetType="CEGUI/RadioButton" renderer="Core/ToggleButton" lookNFeel="RadioButton" />
+	<FalagardMapping windowType="Menubar"   targetType="CEGUI/Menubar"   renderer="Core/Menubar"   lookNFeel="Menubar" />
+	<FalagardMapping windowType="TabButton"  targetType="CEGUI/TabButton"  renderer="Core/TabButton"  lookNFeel="TabButton" />
+	<FalagardMapping windowType="TabControl" targetType="CEGUI/TabControl" renderer="Core/TabControl" lookNFeel="TabControl" />
+	<FalagardMapping windowType="TabContentPane"    targetType="DefaultWindow"    renderer="Core/Default"    lookNFeel="TabContentPane" />
+	<FalagardMapping windowType="TabButtonPane"    targetType="DefaultWindow"    renderer="Core/Default"    lookNFeel="TabButtonPane" />
+	<FalagardMapping windowType="Slider"      targetType="CEGUI/Slider" renderer="Core/Slider"  lookNFeel="Slider" />
+	<FalagardMapping windowType="SliderThumb" targetType="CEGUI/Thumb"  renderer="Core/Button"  lookNFeel="SliderThumb" />
+	<FalagardMapping windowType="GroupBox" targetType="CEGUI/GroupBox"   renderer="Core/Default"   lookNFeel="GroupBox" /-->
+	<FalagardMapping windowType="Label"       targetType="DefaultWindow"     renderer="Core/Default"      lookNFeel="Label" />
+	
+</GUIScheme>

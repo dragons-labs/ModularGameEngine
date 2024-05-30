@@ -1,0 +1,78 @@
+// selection marker flat-circle (for decals, etc)
+hlms SelectionMarkerGreen unlit {
+	diffuse_map  CircleGreen.png
+	scene_blend  alpha_blend
+}
+
+hlms SelectionMarkerRed unlit {
+	diffuse  1 0 0 1
+	diffuse_map  CircleWhite.png
+	scene_blend  alpha_blend
+}
+
+hlms SelectionMarkerYellow unlit {
+	diffuse  1 1 0 1
+	diffuse_map  CircleWhite.png
+	scene_blend  alpha_blend
+}
+
+
+// for Marker3D.mesh
+hlms Marker3D unlit {
+	diffuse_map  Marker3D.png
+}
+
+
+// for Axis.mesh
+hlms Axis_X unlit {
+	diffuse  0.9 0 0
+}
+
+hlms Axis_Y unlit {
+	diffuse  0 0.9 0
+}
+
+hlms Axis_Z unlit {
+	diffuse  0 0 0.9
+}
+
+
+// for tests screens (Plane.mesh, BillboardScreen.mesh, etc.)
+hlms ScreenDefault1 unlit {
+	diffuse_map  TestChartHD.png
+	cull_mode    none
+}
+
+hlms ScreenDefault2 unlit {
+	diffuse_map  TestNumbers.png
+	cull_mode    none
+}
+
+hlms ScreenDefaultPbs1 pbs {
+	diffuse_map  TestChartHD.png
+	specular_map TestChartHD.png
+	cull_mode    none
+}
+
+hlms ScreenDefaultPbs2 pbs {
+	diffuse_map  TestNumbers.png
+	specular_map TestNumbers.png
+	cull_mode    none
+}
+
+
+// some standard materials ...
+hlms MAT_TRIGGER unlit {
+	diffuse      0.9 0.9 0 0.4
+	scene_blend  alpha_blend
+}
+
+hlms MAT_FULL_TRANSPARENT unlit {
+	diffuse      0 0 0 0
+	scene_blend  alpha_blend
+}
+
+hlms MAT_MISSING_TEXTURE unlit {
+	diffuse_map  TestNumbers.png
+	cull_mode    none
+}

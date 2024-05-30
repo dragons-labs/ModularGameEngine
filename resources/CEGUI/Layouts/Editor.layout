@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="FrameWindow"                  name="EditorWindow">
+		<Property name="Size"                   value="{{0.001,256},  {0,592}}" /><!-- temporary fix should be {{0,256},{0,600}} -->
+		<Property name="Position"               value="{{0,1},        {0,1}}" /><!-- 1px from screen edge for camera movment on screen margins -->
+		<Property name="DragMovingEnabled"      value="True" />
+		<Property name="TitlebarEnabled"        value="True" />
+		<Property name="CloseButtonEnabled"     value="False" />
+		<Property name="SizingEnabled"          value="False" />
+		<Property name="Text"                   value="MGE Editor" />
+		<Property name="TitlebarFont"           value="DejaVuSans-bold" />
+		
+		<Window type="Static"                   name="General">
+			<Property name="BackgroundColours"  value="66DFDFDF" />
+			<Property name="FrameEnabled"       value="True" />
+			<Property name="Size"               value="{{1.0,-1},{0,162}}" />
+			<Property name="Position"           value="{{0,0},{0,1}}" />
+			
+			<Window type="Static"                   name="TS Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.5,7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,7}}" />
+				<Property name="Text"               value="Transform Space:" />
+			</Window>
+			<Window type="Combobox"                 name="TransformSpace">
+				<Property name="Size"               value="{{0.45,-7},{0,75}}" />
+				<Property name="Position"           value="{{0.55,0},{0,7}}" />
+				<Property name="ReadOnly"           value="True" />
+				<Property name="ClippedByParent"    value="False" />
+			</Window>
+			
+			<Window type="Static"                   name="VS Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.5,7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,37}}" />
+				<Property name="Text"               value="Value Space:" />
+			</Window>
+			<Window type="Combobox"                 name="ValueSpace">
+				<Property name="Size"               value="{{0.45,-7},{0,75}}" />
+				<Property name="Position"           value="{{0.55,0},{0,37}}" />
+				<Property name="ReadOnly"           value="True" />
+				<Property name="ClippedByParent"    value="False" />
+			</Window>
+			
+			<Window type="Static"                   name="TP Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.5,-7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,67}}" />
+				<Property name="Text"               value="Transform Pivot:" />
+			</Window>
+			<Window type="Combobox"                 name="TransformPivot">
+				<Property name="Size"               value="{{0.45,-7},{0,90}}" />
+				<Property name="Position"           value="{{0.55,0},{0,67}}" />
+				<Property name="ReadOnly"           value="True" />
+				<Property name="ClippedByParent"    value="False" />
+			</Window>
+			
+			<Window type="Static"                   name="OP Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.5,-7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,97}}" />
+				<Property name="Text"               value="Gizmo Mode:" />
+			</Window>
+			<Window type="Combobox"                 name="Operation">
+				<Property name="Size"               value="{{0.45,-7},{0,75}}" />
+				<Property name="Position"           value="{{0.55,0},{0,97}}" />
+				<Property name="ReadOnly"           value="True" />
+				<Property name="ClippedByParent"    value="False" />
+			</Window>
+			
+			<Window type="Checkbox" name="IdividualObjects">
+				<Property name="Size"                   value="{{0.9,0},{0,35}}" />
+				<Property name="Position"               value="{{0.1,0},{0,127}}" />
+				<Property name="Text"                   value="   Apply scale &amp; rotation to&#10;   individual objects in group" />
+				<Property name="Selected"               value="False" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   name="Transform">
+			<Property name="BackgroundColours"  value="66DFDFDF" />
+			<Property name="FrameEnabled"       value="True" />
+			<Property name="Size"               value="{{1.0,0},{0,220}}" /><!-- temporary fix should be {{1.0,-1},{0,220}} -->
+			<Property name="Position"           value="{{0,0},{0,165}}" />
+			
+			<Window type="Static"                   name="Position">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{1.0,-14},{0,50}}" />
+				<Property name="Position"           value="{{0,7},{0,7}}" />
+				
+				<Window type="Static"                   name="Label">
+					<Property name="BackgroundColours"  value="3fDFDFDF" />
+					<Property name="FrameEnabled"       value="False" />
+					<Property name="Size"               value="{{1.0,0},{0,20}}" />
+					<Property name="Position"           value="{{0,0},{0,0}}" />
+					<Property name="Text"               value="Position (X, Y, Z):" />
+				</Window>
+				
+				<Window type="Spinner"                  name="X">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.1" />
+					<Property name="Size"               value="{{0.3, 0},{0,25}}" />
+					<Property name="Position"           value="{{0,0},{0,20}}" />
+				</Window>
+			
+				<Window type="Spinner"                  name="Y">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.1" />
+					<Property name="Size"               value="{{0.3, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.35, 0},{0,20}}" />
+				</Window>
+				
+				<Window type="Spinner"                  name="Z">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.1" />
+					<Property name="Size"               value="{{0.3, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.70, 0},{0,20}}" />
+				</Window>
+			</Window>
+				
+			<Window type="Static"                   name="Scale">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{1.0,-14},{0,50}}" />
+				<Property name="Position"           value="{{0,7},{0,57}}" />
+				
+				<Window type="Static"                   name="Label">
+					<Property name="BackgroundColours"  value="3fDFDFDF" />
+					<Property name="FrameEnabled"       value="False" />
+					<Property name="Size"               value="{{1.0,0},{0,20}}" />
+					<Property name="Position"           value="{{0,0},{0,0}}" />
+					<Property name="Text"               value="Scale (X, Y, Z):" />
+				</Window>
+				
+				<Window type="Spinner"                  name="X">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.1" />
+					<Property name="Size"               value="{{0.3, 0},{0,25}}" />
+					<Property name="Position"           value="{{0,0},{0,20}}" />
+				</Window>
+			
+				<Window type="Spinner"                  name="Y">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.1" />
+					<Property name="Size"               value="{{0.3, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.35, 0},{0,20}}" />
+				</Window>
+				
+				<Window type="Spinner"                  name="Z">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.1" />
+					<Property name="Size"               value="{{0.3, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.70, 0},{0,20}}" />
+				</Window>
+			</Window>
+				
+			<Window type="Static"                   name="Rotation">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{1.0,-14},{0.0,80}}" />
+				<Property name="Position"           value="{{0,7},{0,107}}" />
+				
+				<Window type="Static"                   name="Label">
+					<Property name="BackgroundColours"  value="3fDFDFDF" />
+					<Property name="FrameEnabled"       value="False" />
+					<Property name="Size"               value="{{1.0,0},{0,20}}" />
+					<Property name="Position"           value="{{0,0},{0,0}}" />
+					<Property name="Text"               value="Rotation (X, Y, Z, W):" />
+				</Window>
+				
+				<Window type="Spinner"                  name="X">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="Size"               value="{{0.24, 0},{0,25}}" />
+					<Property name="Position"           value="{{0,0},{0,20}}" />
+				</Window>
+			
+				<Window type="Spinner"                  name="Y">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="Size"               value="{{0.24, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.255, 0},{0,20}}" />
+				</Window>
+				
+				<Window type="Spinner"                  name="Z">
+					<Property name="Precision"          value="3" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="Size"               value="{{0.24, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.51, 0},{0,20}}" />
+				</Window>
+				
+				<Window type="Spinner"                  name="W">
+					<Property name="Precision"          value="2" />
+					<Property name="TextInputMode"      value="FloatingPoint" />
+					<Property name="StepSize"           value="0.01" />
+					<Property name="Size"               value="{{0.24, 0},{0,25}}" />
+					<Property name="Position"           value="{{0.76, 0},{0,20}}" />
+				</Window>
+				
+				<Window type="Static"                   name="Mode Label">
+					<Property name="BackgroundColours"  value="3fDFDFDF" />
+					<Property name="FrameEnabled"       value="False" />
+					<Property name="Size"               value="{{0.9,-125},{0,25}}" />
+					<Property name="Position"           value="{{0,0},{0,50}}" />
+					<Property name="Text"               value="Rot. mode:" />
+				</Window>
+				<Window type="Combobox"                 name="Mode">
+					<Property name="Size"               value="{{0.1,120},{0,145}}" />
+					<Property name="Position"           value="{{0.9,-120},{0,50}}" />
+					<Property name="ReadOnly"           value="True" />
+					<Property name="ClippedByParent"    value="False" />
+				</Window>
+			</Window>
+			
+			<Window type="Button" name="Preview">
+				<Property name="Size"               value="{{0.4,0},{0,25}}" />
+				<Property name="Position"           value="{{0.05,0},{0,192}}" />
+				<Property name="Text"               value="Preview" />
+			</Window>
+			<Window type="Button" name="Apply">
+				<Property name="Size"               value="{{0.4,0},{0,25}}" />
+				<Property name="Position"           value="{{0.55,0},{0,192}}" />
+				<Property name="Text"               value="Apply" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   name="NodeAndItem">
+			<Property name="BackgroundColours"  value="66DFDFDF" />
+			<Property name="FrameEnabled"       value="True" />
+			<Property name="Size"               value="{{1.0,0},{0,127}}" /><!-- temporary fix should be {{1.0,-1},{0,127}} -->
+			<Property name="Position"           value="{{0,0},{0,387}}" />
+			
+			<Window type="Static"                   name="NodeName Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.35,7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,7}}" />
+				<Property name="Text"               value="Node Name:" />
+			</Window>
+			<Window type="Editbox"                  name="NodeName">
+				<Property name="Size"               value="{{0.6,-7},{0,25}}" />
+				<Property name="Position"           value="{{0.4,0},{0,7}}" />
+			</Window>
+			
+			<Window type="Static"                   name="ItemName Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.35,7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,37}}" />
+				<Property name="Text"               value="Item Name:" />
+			</Window>
+			<Window type="Editbox"                  name="ItemName">
+				<Property name="Size"               value="{{0.6,-7},{0,25}}" />
+				<Property name="Position"           value="{{0.4,0},{0,37}}" />
+			</Window>
+			
+			<Window type="Static"                   name="Mesh Label">
+				<Property name="BackgroundColours"  value="3fDFDFDF" />
+				<Property name="FrameEnabled"       value="False" />
+				<Property name="Size"               value="{{0.15,7},{0,25}}" />
+				<Property name="Position"           value="{{0,7},{0,67}}" />
+				<Property name="Text"               value="Mesh:" />
+			</Window>
+			<Window type="Combobox"                 name="Mesh">
+				<Property name="Size"               value="{{0.8,-7},{0,100}}" />
+				<Property name="Position"           value="{{0.2,0},{0,67}}" />
+				<Property name="ReadOnly"           value="False" />
+				<Property name="ClippedByParent"    value="False" />
+				<Property name="ForceVertScrollbar" value="True" />
+			</Window>
+			
+			<Window type="Button" name="New">
+				<Property name="Size"               value="{{0.3,0},{0,25}}" />
+				<Property name="Position"           value="{{0.025,0},{0,97}}" />
+				<Property name="Text"               value="New" />
+			</Window>
+			<Window type="Button" name="NewChild">
+				<Property name="Size"               value="{{0.3,0},{0,25}}" />
+				<Property name="Position"           value="{{0.350,0},{0,97}}" />
+				<Property name="Text"               value="New Child" />
+			</Window>
+			<Window type="Button" name="Apply">
+				<Property name="Size"               value="{{0.3,0},{0,25}}" />
+				<Property name="Position"           value="{{0.675,0},{0,97}}" />
+				<Property name="Text"               value="Apply" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   name="Misc">
+			<Property name="BackgroundColours"  value="66DFDFDF" />
+			<Property name="FrameEnabled"       value="True" />
+			<Property name="Size"               value="{{1.0,-1},{0,45}}" />
+			<Property name="Position"           value="{{0,0},{0,517}}" />
+			
+			<Window type="Checkbox" name="ShowTriggers">
+				<Property name="Size"               value="{{0.35,-7},{0,35}}" />
+				<Property name="Position"           value="{{0.0,7},{0,7}}" />
+				<Property name="Text"               value=" Show&#10; Triggers" />
+				<Property name="Selected"           value="True" />
+			</Window>
+			<Window type="Button" name="SelectParent">
+				<Property name="Size"               value="{{0.6,-7},{0,25}}" />
+				<Property name="Position"           value="{{0.4,0},{0,13}}" />
+				<Property name="Text"               value="Select Parent Node" />
+			</Window>
+		</Window>
+	</Window>
+</GUILayout>

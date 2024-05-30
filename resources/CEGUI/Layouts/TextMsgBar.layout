@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="StaticText">
+		<Property name="Size"                  value="{{0.48, 0}, {0, 24}}" />
+		<Property name="Font"                  value="DejaVuMono" />
+		<Property name="TextColour"            value="FF00FF00"/>
+		<Property name="Alpha"                 value="0.7" />
+		<Property name="HorzFormatting"        value="LeftAligned" />
+		<Property name="VertFormatting"        value="CentreAligned" />
+		<Property name="FrameEnabled"          value="False" />
+	</Window>
+</GUILayout>

@@ -1,0 +1,69 @@
+./Programs4GPU/*
+./PythonScripts/*
+./g11n.xml
+	Author:  Robert Paciorek, MGE Project
+	Licence: MIT
+
+
+./LoadingScreen/scripts/*
+	Author:  Robert Paciorek, MGE Project
+	Licence: MIT
+
+./LoadingScreen/shaders/Quad*
+	Source:  http://www.ogre3d.org/
+	Author:  Torus Knot Software Ltd
+	Licence: MIT
+
+./LoadingScreen/shaders/TexturePass*
+	Source:  (based on Samples/Media/2.0/scripts/materials/Postprocessing/*/GrayScale*) http://www.ogre3d.org/
+	Author:  Robert Paciorek, MGE Project
+	Author:  Torus Knot Software Ltd
+	Licence: MIT
+
+
+./EngineMedia/meshes/*.mesh
+./EngineMedia/materials/*.png
+./EngineMedia/materials/BasicsMaterials.material
+	Author:  Robert Paciorek, MGE Project
+	Licence: MIT
+	Comment: .svg i .blend source files in resources-src/EngineMedia in MGE sources
+
+./EngineMedia/materials/TestChartHD.png
+	Author:  Robert Paciorek, MGE Project
+	Licence: MIT
+	Comment: exported from TestChart_similar_to_old_TV_testscreens_RRP.svg
+	         (heavily modified version of CC-Zero "TV testscreen" from openclipart.org – https://commons.wikimedia.org/wiki/File:TestChart_similar_to_old_TV_testscreens.svg)
+
+./EngineMedia/materials/AxisGizmo.material
+	Source:  https://bitbucket.org/ogitor/ogitor/
+	Author:  Ismail TARIM and the Ogitor Team
+	Licence: MIT
+	Comment: modify and convert by Robert Paciorek for MGE Project
+
+./EngineMedia/sky/*
+	Source:  http://www.ogre3d.org/
+	Author:  Torus Knot Software Ltd
+	Licence: MIT
+
+
+./CEGUI/Layouts/*
+	Author:  Robert Paciorek, MGE Project
+	Licence: MIT
+
+./CEGUI/Scheme/*
+	Source:  http://cegui.org.uk/
+	Author:  Robert Paciorek, MGE Project
+	Author:  Paul D Turner, The CEGUI Development Team and Contributing Authors
+	Licence: MIT
+
+./CEGUI/Images/WindowsLook*
+	Source:  http://cegui.org.uk/
+	Author:  Paul D Turner, The CEGUI Development Team and Contributing Authors
+	Licence: MIT
+	Comment: modify and convert by Robert Paciorek for MGE Project
+
+./CEGUI/Images/missing.png
+./CEGUI/Fonts/*.font
+	Author:  Robert Paciorek, MGE Project
+	Licence: MIT
+

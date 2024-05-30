@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="FrameWindow"          				name="WorldInfoWindow">
+		<Property name="Size"                   			value="{{0.1,520}, {0.2,280}}" />
+		<Property name="Position"               			value="{{0,0},     {0.8,-280}}" />
+		<Property name="DragMovingEnabled"      			value="True" />
+		<Property name="TitlebarEnabled"        			value="True" />
+		<Property name="CloseButtonEnabled"     			value="True" />
+		<Property name="SizingEnabled"          			value="True" />
+		<Property name="MinSize"                			value="{{0,550},  {0,280}}"/>
+		<Property name="TitlebarFont"           			value="DejaVuSans-bold" />
+		<Property name="AutoRenderingSurface"   			value="False"/> <!-- need for display interactive RTT images or video -->
+		
+		<Window type="Static"               			name="TabSwitching">
+			<Property name="Position"               		value="{{0,5},{0,5}}" />
+			<Property name="Size"                   		value="{{1,-10},{0,28}}" />
+			
+			<Property name="FrameEnabled"           		value="False" />
+			<Property name="BackgroundColours"      		value="00000000" />
+			
+			<Window type="Button"               		name="TextInfo">
+				<Property name="Position"               	value="{{0,0},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<UserString name="txt:en"               	value="Reports" />
+				<UserString name="txt:pl"               	value="Raporty" />
+			</Window>
+			<Window type="Button"               		name="MiniMap">
+				<Property name="Position"               	value="{{0,100},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<UserString name="txt:en"               	value="Minimap" />
+				<UserString name="txt:pl"               	value="Minimapa" />
+			</Window>
+			<Window type="Button"               		name="Units">
+				<Property name="Position"               	value="{{0,200},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<UserString name="txt:en"               	value="Units" />
+				<UserString name="txt:pl"               	value="Jednostki" />
+			</Window>
+			<Window type="Button"               		name="WorldMap">
+				<Property name="Position"               	value="{{0,300},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<UserString name="txt:en"               	value="World Map" />
+				<UserString name="txt:pl"               	value="Mapa Świata" />
+			</Window>
+			<Window type="Button"               		name="Extra1">
+				<Property name="Position"               	value="{{0,400},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<Property name="Visible"                	value="False" />
+			</Window>
+			<Window type="Button"               		name="Extra2">
+				<Property name="Position"               	value="{{0,500},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<Property name="Visible"                	value="False" />
+			</Window>
+			<Window type="Button"               		name="Extra3">
+				<Property name="Position"               	value="{{0,600},{0,0}}" />
+				<Property name="Size"                   	value="{{0,90},{0,20}}" />
+				<Property name="Visible"                	value="False" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"               			name="TextInfo">
+			<Property name="Position"               		value="{{0,5},{0,30}}" />
+			<Property name="Size"                   		value="{{1,-10},{1,-35}}" />
+			
+			<Property name="Visible"                		value="False" />
+			<Property name="FrameEnabled"           		value="False" />
+			<Property name="BackgroundColours"      		value="00000000" />
+			
+			<Window type="StaticText"           		name="TextReport">
+				<Property name="Size"                   	value="{{1,0},{1,-30}}" />
+				<Property name="VertScrollbar"          	value="True" />
+				<Property name="HorzScrollbar"          	value="True" />
+			</Window>
+			<Window type="InteractiveTexture"   		name="HtmlReport">
+				<Property name="Size"                   	value="{{1,0},{1,-30}}" />
+			</Window>
+			<Window type="Button"               		name="Prev">
+				<UserString name="txt:pl"               	value="Poprzednia strona" />
+				<Property name="Position"               	value="{{0,0},{1,-25}}" />
+				<Property name="Size"                   	value="{{0,160},{0,25}}" />
+			</Window>
+			<Window type="ComboboxUpward"       		name="ReportName">
+				<Property name="Position"               	value="{{0.5,-100},{1,-120}}" />
+				<Property name="Size"                   	value="{{0.01,200}, {0,120}}" />
+				<Property name="ReadOnly"               	value="True" />
+			</Window>
+			<Window type="Button"               		name="Next">
+				<UserString name="txt:pl"               	value="Następna strona" />
+				<Property name="Position"               	value="{{1,-160},{1,-25}}" />
+				<Property name="Size"                   	value="{{0,160},{0,25}}" />
+			</Window>
+		</Window>
+		
+		<Window type="StaticImage"          			name="MiniMap">
+			<Property name="Position"               		value="{{0,5},{0,30}}" />
+			<Property name="Size"                   		value="{{1,-10},{1,-35}}" />
+			
+			<Property name="Visible"                		value="False" />
+			<Property name="FrameEnabled"           		value="False" />
+			
+			<Window type="StaticImage"          		name="OverlayMap">
+				<Property name="BackgroundColours"      	value="00000000" />
+				<Property name="CursorPassThroughEnabled"	value="True" />
+				<Property name="FrameEnabled"           	value="False" />
+				<Property name="Position"               	value="{{0,0}, {0,0}}" />
+				<Property name="Size"                   	value="{{1,0}, {1,0}}" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"               			name="Units">
+			<Property name="Position"               		value="{{0,5},{0,30}}" />
+			<Property name="Size"                   		value="{{1,-10},{1,-35}}" />
+			
+			<Property name="Visible"                		value="False" />
+			<Property name="FrameEnabled"           		value="False" />
+			<Property name="BackgroundColours"      		value="00000000" />
+			
+			<Window type="Combobox"             		name="FilterA">
+				<Property name="Position"               	value="{{0.05,0}, {0,3}}" />
+				<Property name="Size"                   	value="{{0.4,0}, {0,120}}" />
+				<Property name="ReadOnly"               	value="True" />
+				<UserString name="txt:en"               	value="(all)" />
+				<UserString name="txt:pl"               	value="(wszystkie)" />
+			</Window>
+			
+			<Window type="Combobox"             		name="FilterB">
+				<Property name="HorizontalAlignment"    	value="Right" />
+				<Property name="Position"               	value="{{-0.05,0}, {0,3}}" />
+				<Property name="Size"                   	value="{{0.4,0}, {0,120}}" />
+				<Property name="ReadOnly"               	value="True" />
+				<UserString name="txt:en"               	value="(all)" />
+				<UserString name="txt:pl"               	value="(wszystkie)" />
+			</Window>
+			
+			<Window type="MultiColumnList"      		name="List">
+				<Property name="Font"                   	value="DefaultFont" />
+				<Property name="ColumnsSizable"         	value="False" />
+				<Property name="ColumnsMovable"         	value="False" />
+				<Property name="SortSettingEnabled"     	value="True" />
+				<Property name="ForceVertScrollbar"     	value="True" />
+				<Property name="Position"               	value="{{0,0}, {0,35}}" />
+				<Property name="Size"                   	value="{{1,0}, {1,-37}}" />
+			</Window>
+		</Window>
+		
+		<Window type="StaticImage"          			name="WorldMap">
+			<Property name="Position"               		value="{{0,5},{0,30}}" />
+			<Property name="Size"                   		value="{{1,-10},{1,-35}}" />
+			
+			<Property name="Visible"                		value="False" />
+			<Property name="FrameEnabled"           		value="False" />
+		</Window>
+	</Window>
+</GUILayout>

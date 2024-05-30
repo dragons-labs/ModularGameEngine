@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static"   name="OnScreenInfo">
+		<Property name="CursorPassThroughEnabled" value="True" />
+		<Property name="BackgroundColours"       value="2fDFDFDF" />
+		<Property name="FrameColours"            value="00000000" />
+		
+		<Property name="Size"                    value="{{0,230}, {0,35}}" />
+		<Property name="Position"                value="{{0,0},   {-0.23,0}}" />
+		<Property name="VerticalAlignment"       value="Centre" />
+		<Property name="HorizontalAlignment"     value="Centre" />
+		<Property name="AlwaysOnTop"             value="True" />
+		
+		<Property name="HorzFormatting"          value="CentreAligned" />
+		<Property name="TextColour"              value="ff00ff00" />
+		<Property name="Font"                    value="DejaVuSans-bigbold" />
+	</Window>
+</GUILayout>

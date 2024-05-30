@@ -1,0 +1,3 @@
+workspace WorkspacePlayerCamera {
+	connect_output MainRendering 0
+}

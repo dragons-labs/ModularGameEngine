@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static">
+		<Property name="BackgroundColours" value="bb000066" />
+		<Property name="FrameEnabled"      value="False" />
+		<Property name="Size" value="{{0.0,70}, {0.0,16}}" />
+		<Window type="Static"           name="Text">
+			<Property name="BackgroundColours" value="00000000" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="Size"              value="{{1.0,-19}, {0,10}}" />
+			<Property name="Position"          value="{{0,16},    {0,3}}" />
+			<Property name="HorzFormatting"    value="CentreAligned" />
+			<Property name="TextColour"        value="ff00ff00" />
+			<Property name="CursorPassThroughEnabled" value="True" />
+		</Window>
+		<Window type="StaticImage"      name="Point">
+			<Property name="Size"              value="{{0,10}, {0,10}}" />
+			<Property name="Position"          value="{{0,3},  {0,3}}" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="Image"             value="MGE_GUI_ImageSet/CloseButtonNormal" />
+			<Property name="CursorPassThroughEnabled" value="True" />
+		</Window>
+	</Window>
+</GUILayout>

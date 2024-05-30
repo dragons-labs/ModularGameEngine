@@ -1,0 +1,57 @@
+#ifndef MGE_CEF_CONFIG_H
+#define MGE_CEF_CONFIG_H
+
+/// @addtogroup BuildOptions
+/// @{
+/// @file
+/// @brief Template for cmake to generate config.h header
+
+#include "config.h"
+
+/// @name Chromium Embedded Framework
+/// @{
+
+/// when set using CEF web browser
+#cmakedefine USE_CEF
+
+/// CEF resource directory location
+#ifndef CEF_RESOURCES_DIR_PATH
+	#cmakedefine CEF_RESOURCES_DIR_PATH "@CEF_RESOURCES_DIR_PATH@"
+#endif
+
+/// CEF locale directory location
+#ifndef CEF_LOCALES_DIR_PATH
+	#define CEF_LOCALES_DIR_PATH CEF_RESOURCES_DIR_PATH "/locales"
+#endif
+
+/// CEF sub process executable location
+#ifndef CEF_SUBPROCESS_PATH
+	#define CEF_SUBPROCESS_PATH  MGE::Engine::getPtr()->getExecutableDir() + "/cef_sub_process"
+#endif
+
+/// CEF log path
+#ifndef CEF_CONFIG_LOG_PATH
+	#define CEF_CONFIG_LOG_PATH MGE::Engine::getPtr()->getExecutableDir() + "/cef.log"
+#endif
+
+/// CEF default locale
+#ifndef CEF_CONFIG_LOCALE
+	#define CEF_CONFIG_LOCALE "en-US"
+#endif
+
+/// CEF log severity level, by default set based on MGE_DEBUG_LEVEL
+#ifndef CEF_CONFIG_LOGSEVERITY
+	#if defined MGE_DEBUG_LEVEL and MGE_DEBUG_LEVEL > 1
+		#define CEF_CONFIG_LOGSEVERITY  LOGSEVERITY_VERBOSE
+	#elif defined MGE_DEBUG_LEVEL
+		#define CEF_CONFIG_LOGSEVERITY  LOGSEVERITY_WARNING
+	#else
+		#define CEF_CONFIG_LOGSEVERITY  LOGSEVERITY_ERROR
+	#endif
+#endif
+
+/// @}
+
+/// @}
+
+#endif

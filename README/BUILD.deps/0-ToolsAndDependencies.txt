@@ -1,0 +1,24 @@
+INSTALL FROM PACKAGES
+=====================
+
+# tools
+sudo apt install  clang g++ gdb make cmake pkgconf automake libtool swig doxygen graphviz sqlite3  \
+                  # optional: vim-nox bash-completion man less cmake-curses-gui git wget patch   p7zip-full bzip2
+
+sudo apt install  python3-pip python3-clang
+git clone https://github.com/pybind/pybind11_mkdoc ~/pybind11_mkdoc &&  pip3 install --no-deps --break-system-packages ~/pybind11_mkdoc/  # --no-deps is important to use system `python3-clang` (version 14)
+
+
+# basic dependencies
+sudo apt install  python3-dev pybind11-dev libpugixml-dev libboost-program-options-dev \
+                  libfreeimage-dev libfreetype6-dev libegl1-mesa-dev libgl1-mesa-dev libgles2-mesa-dev x11proto-gl-dev \
+                  libxaw7-dev libxrandr-dev rapidjson-dev libtinyxml-dev libsdl2-dev libpcre3-dev libzzip-dev libglm-dev \
+                  libopenal-dev libogg-dev libvorbis-dev libtheora-dev \
+                  libbullet-dev 
+
+
+build and check with version
+----------------------------
+
+* Debian 12.0 "Bookworm"
+* pybind11-mkdoc: Wed Feb 8 16:45:39 2023 +0100 (42fbf377824185e255b06d68fa70f4efcd569e2d)

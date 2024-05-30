@@ -1,0 +1,16 @@
+compositor_node LoadingScreen_RenderingNode {
+	in 0 rt_renderwindow
+	
+	target rt_renderwindow {
+		pass clear {
+			colour_value 0.2 0.4 0.6 1
+		}
+		pass render_quad {
+			material LoadingScreen
+		}
+	}
+}
+
+workspace WorkspaceLoadingScreen {
+	connect_output LoadingScreen_RenderingNode 0
+}

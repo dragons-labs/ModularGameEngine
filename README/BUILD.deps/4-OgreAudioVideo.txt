@@ -1,0 +1,22 @@
+BUILD FROM SOURCE
+=================
+
+git clone https://github.com/OGRECave/ogre-audiovideo.git
+cd ogre-audiovideo
+
+mkdir build; cd build
+
+cmake .. -DCMAKE_MODULE_PATH=/usr/local/lib/OGRE/cmake/ -DOGGSOUND_PYTHON=0 -DBUILD_DEMOS=0     # TODO: OGGSOUND_PYTHON=0 is temporary fix
+make -j5
+
+sudo make install; sudo ldconfig
+
+
+build and check with version
+----------------------------
+
+commit 2d373450b5c63849eeacfa1fefc9d101b52fd447 (HEAD -> master, origin/master, origin/HEAD)
+Author: Robert Paciorek <robert@opcode.eu.org>
+Date:   Sat May 25 19:11:47 2024 +0000
+
+    support for Ogre-Next 3.0 and 4.0

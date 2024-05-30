@@ -1,0 +1,45 @@
+<Resources>
+	<!-- Resource locations to be added to the default path -->
+	
+	<Group name="MGE_OgreCompositor">
+		<Entry type="dir" path="OgreCompositor" />
+		<Entry type="dir" path="resources/General/OgreCompositor" />
+	</Group>
+	
+	<Group name="MGE_Programs4GPU">
+		<Entry type="dir" recursionMode="asFiles" path="resources/General/Programs4GPU" />
+	</Group>
+	
+	<Group name="MGE_EngineMedia">
+		<Entry type="dir" recursionMode="asFiles" path="resources/General/EngineMedia" />
+	</Group>
+	
+	
+	<Group name="MGE_GUI_layouts">
+		<Entry type="dir" path="resources/General/CEGUI/Scheme" />
+		<Entry type="dir" recursionMode="asSubPaths" path="resources/General/CEGUI/Layouts" />
+	</Group>
+	
+	<Group name="MGE_GUI_fonts">
+		<Entry type="dir" recursionMode="asFiles" path="Fonts" />
+		<Entry type="dir" recursionMode="asFiles" path="resources/General/CEGUI/Fonts" />
+	</Group>
+	
+	<Group name="MGE_GUI_images">
+		<Entry type="dir" path="resources/General/CEGUI/Images" />
+	</Group>
+	
+	
+	<Group name="MGE_PythonScripts">
+		<Entry type="dir" recursionMode="asSubPaths" path="resources/General/PythonScripts" />
+	</Group>
+	
+	<Group name="MGE_DefaultPythonScripts">
+		<Entry type="dir" recursionMode="asFiles" path="resources/General/PythonScripts/default" />
+	</Group>
+	
+	
+	<Group name="MGE_MapsMainConfigs">
+		<Entry type="dir" path="resources/MapsConfigs" />
+	</Group>
+</Resources>

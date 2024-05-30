@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<Fonts version="4">
+	<Font name="DejaVuMono" filename="DejaVuSansMono.ttf" type="FreeType" size="8" />
+	<Font name="DejaVuMono-bold" filename="DejaVuSansMono-Bold.ttf" type="FreeType" size="10" />
+
+	<Font name="DejaVuSans" filename="DejaVuSans.ttf" type="FreeType" size="10" />
+	<Font name="DejaVuSans-bold" filename="DejaVuSans-Bold.ttf" type="FreeType" size="10" />
+	
+	<Font name="DejaVuSans-big" filename="DejaVuSans.ttf" type="FreeType" size="16" />
+	<Font name="DejaVuSans-bigbold" filename="DejaVuSans-Bold.ttf" type="FreeType" size="16" />
+	
+	<Font name="DejaVuSans-small" filename="DejaVuSans.ttf" type="FreeType" size="6" />
+	<Font name="DejaVuSans-smallbold" filename="DejaVuSans-Bold.ttf" type="FreeType" size="6" />
+</Fonts>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static">
+		<Property name="BackgroundColours" value="bb666666" />
+		<Property name="FrameEnabled"      value="False" />
+		<Property name="Size" value="{{0.0,110}, {0.0,30}}" />
+		<Window type="StaticImage"      name="Point">
+			<Property name="Size"              value="{{0,10}, {0,10}}" />
+			<Property name="Position"          value="{{0,5},  {0,15}}" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="Image"             value="MGE_GUI_ImageSet/CloseButtonNormal" />
+			<Property name="CursorPassThroughEnabled" value="True" />
+		</Window>
+		<Window type="Static"           name="TextLine1">
+			<Property name="BackgroundColours" value="00000000" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="Size"              value="{{1.0,-4}, {0,8}}" />
+			<Property name="Position"          value="{{0,2},    {0,1}}" />
+			
+			<Property name="Font"              value="DejaVuSans-small" />
+			<Property name="TextColour"        value="ff00ff00" />
+			<Property name="CursorPassThroughEnabled" value="True" />
+		</Window>
+		<Window type="Static"           name="TextLine2">
+			<Property name="BackgroundColours" value="00000000" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="Size"              value="{{1.0,-20}, {0,8}}" />
+			<Property name="Position"          value="{{0,20},    {0,10}}" />
+			
+			<Property name="Font"              value="DejaVuSans-small" />
+			<Property name="TextColour"        value="ff00ff00" />
+			<Property name="CursorPassThroughEnabled" value="True" />
+		</Window>
+		<Window type="Static"           name="TextLine3">
+			<Property name="BackgroundColours" value="00000000" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="Size"              value="{{1.0,-20}, {0,8}}" />
+			<Property name="Position"          value="{{0,20},    {0,20}}" />
+			
+			<Property name="Font"              value="DejaVuSans-small" />
+			<Property name="TextColour"        value="ff00ff00" />
+			<Property name="CursorPassThroughEnabled" value="True" />
+		</Window>
+	</Window>
+</GUILayout>

@@ -1,0 +1,113 @@
+# from Ogitor (https://bitbucket.org/ogitor/ogitor/)
+# Licensed under the MIT License
+
+hlms MAT_GIZMO_X unlit {
+	diffuse		0.5 0 0 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_X_L unlit {
+	diffuse		1 0 0 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_Y unlit {
+	diffuse		0 0.5 0 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_Y_L unlit {
+	diffuse		0 1 0 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_Z unlit {
+	diffuse		0 0 0.5 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_Z_L unlit {
+	diffuse		0.2 0.8 1 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_XY unlit {
+	diffuse		0.5 0.5 0 0.7
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_XY_L unlit {
+	diffuse		1 1 0 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_YZ unlit {
+	diffuse		0 0.5 0.5 0.7
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_YZ_L unlit {
+	diffuse		0 1 1 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_ZX unlit {
+	diffuse		0.5 0 0.5 0.7
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_ZX_L unlit {
+	diffuse		1 0 1 0.9
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_ALL unlit {
+	diffuse		0.5 0.5 0.5 0.8
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}
+
+
+hlms MAT_GIZMO_ALL_L unlit {
+	diffuse		1 1 1 1.0
+	cull_mode	none
+	depth_check	off
+	scene_blend alpha_blend
+}

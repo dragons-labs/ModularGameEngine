@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<Fonts version="4">
+	<Font name="DefaultFont" filename="DejaVuSans.ttf" type="FreeType" size="10" />
+</Fonts>

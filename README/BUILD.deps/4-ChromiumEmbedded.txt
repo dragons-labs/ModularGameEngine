@@ -1,0 +1,33 @@
+BUILD FROM SOURCE
+=================
+
+# download package (cef_binary_*_linux64_minimal.tar.bz2) from https://cef-builds.spotifycdn.com/index.html and extract to cef_binary
+VER="123.0.13+gfc703fb+chromium-123.0.6312.124"
+wget "https://cef-builds.spotifycdn.com/cef_binary_${VER//+/%2B}_linux64_minimal.tar.bz2"
+tar -xjf "cef_binary_${VER}_linux64_minimal.tar.bz2"
+mv "cef_binary_${VER}_linux64_minimal" cef_binary
+
+
+cd cef_binary
+mkdir build; cd build
+
+cmake -D CMAKE_CXX_COMPILER=clang++ ..  # WARNING cef must be build the same compiler as MGE !!!
+make -j5 libcef_dll_wrapper
+
+sudo cp libcef_dll_wrapper/libcef_dll_wrapper.a     /usr/local/lib/
+sudo rm -fr                                         /usr/local/share/cef/
+sudo mkdir                                          /usr/local/share/cef/
+sudo cp -a ../Resources/*                           /usr/local/share/cef/
+sudo cp -a ../Release/*                             /usr/local/share/cef/
+sudo rm -fr                                         /usr/local/include/cef
+sudo cp -a ../include/                              /usr/local/include/cef
+sudo ln -s /usr/local/include/cef                   /usr/local/include/cef/include
+
+sudo apt install libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxcomposite1 libatspi2.0-0 libxdamage1
+
+
+build and check with version
+----------------------------
+
+123.0.13+gfc703fb+chromium-123.0.6312.124
+

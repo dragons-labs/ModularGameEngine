@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static"   name="ActorWindow">
+		<Property name="Size"                      value="{{0.0,360}, {0.0,150}}" />
+		<Property name="Position"                  value="{{1.0,-360},{0.0,0}}" />
+		<Property name="FrameEnabled"              value="False" />
+		<Property name="BackgroundColours"         value="B2DFDFDF" />
+		<UserString name="MinimizedPosition"       value="{{1.0,-292},{0.0,-118}}" />
+		
+		<Window type="StaticImage" name="Actor">
+			<Property name="FrameEnabled"          value="False" />
+			<Property name="Position"              value="{{0,6},  {0,5}}" />
+			<Property name="Size"                  value="{{0,112},{0,112}}" />
+			<Window type="ProgressBar" name="Health">
+				<Property name="Position"          value="{{0,1},  {0,1}}" />
+				<Property name="Size"              value="{{1,-2}, {0,8}}" />
+				<Property name="Alpha"             value="0.8" />
+			</Window>
+			<Window type="Static" name="Name">
+				<Property name="Position"          value="{{0,2},  {1,-11}}" />
+				<Property name="Size"              value="{{1,-27},{0,10}}" />
+				<Property name="Font"              value="DejaVuSans-small" />
+				<Property name="HorzFormatting"    value="CentreAligned" />
+				<Property name="FrameEnabled"      value="False" />
+				<Property name="BackgroundColours" value="22111111" />
+			</Window>
+			<Window type="Static" name="QLen">
+				<Property name="Position"          value="{{1,-22},{1,-11}}" />
+				<Property name="Size"              value="{{0,20}, {0,10}}" />
+				<Property name="Font"              value="DejaVuSans-small" />
+				<Property name="HorzFormatting"    value="CentreAligned" />
+				<Property name="FrameEnabled"      value="False" />
+				<Property name="BackgroundColours" value="22111111" />
+			</Window>
+		</Window>
+		<Window type="Static" name="Info">
+			<Property name="FrameEnabled"          value="False" />
+			<Property name="Position"              value="{{0,124},{0,5}}" />
+			<Property name="Size"                  value="{{0,112},{0,112}}" />
+			<Window type="ListWidget" name="ActionQueue">
+				<Property name="Position"          value="{{0,0}, {0,0}}" />
+				<Property name="Size"              value="{{1,0}, {1,0}}" />
+				<Property name="Font"              value="DejaVuSans-small" />
+				<Property name="HorzFormatting"    value="WordWrapLeftAligned" />
+			</Window>
+			<Window type="Static" name="ItemList">
+				<Property name="FrameEnabled"      value="False" />
+				<Property name="Size"              value="{{1.0,0}, {1.0,0}}" />
+				
+				<Window type="StaticImage" name="1">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,3},  {0,2}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				<Window type="StaticImage" name="2">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,40}, {0,2}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				<Window type="StaticImage" name="3">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,77}, {0,2}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				
+				<Window type="StaticImage" name="4">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,3},  {0,34}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				<Window type="StaticImage" name="5">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,40}, {0,34}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				<Window type="StaticImage" name="6">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,77}, {0,34}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				
+				<Window type="StaticImage" name="7">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,3},  {0,66}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				<Window type="StaticImage" name="8">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,40}, {0,66}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				<Window type="StaticImage" name="9">
+					<Property name="FrameEnabled"  value="False" />
+					<Property name="Position"      value="{{0,77}, {0,66}}" />
+					<Property name="Size"          value="{{0,32}, {0,28}}" />
+					<Property name="BackgroundColours" value="33222222" />
+					<Window type="ProgressBar" name="Health">
+						<Property name="Position"  value="{{0,1},  {0,1}}" />
+						<Property name="Size"      value="{{1,-2}, {0,5}}" />
+						<Property name="Alpha"     value="1.0" />
+					</Window>
+				</Window>
+				
+				<Window type="Button" name="start">
+					<Property name="Position"      value="{{0,3},  {0,96}}" />
+					<Property name="Size"          value="{{0,32}, {0,14}}" />
+					<Property name="Font"          value="DejaVuSans-small" />
+					<Property name="Text"          value="|&lt;&lt;" />
+				</Window>
+				<Window type="Button" name="next">
+					<Property name="Position"      value="{{0,77}, {0,96}}" />
+					<Property name="Size"          value="{{0,32}, {0,14}}" />
+					<Property name="Font"          value="DejaVuSans-small" />
+					<Property name="Text"          value="&gt;&gt;&gt;" />
+				</Window>
+			</Window>
+		</Window>
+		<Window type="StaticImage" name="Target">
+			<Property name="FrameEnabled"          value="False" />
+			<Property name="Position"              value="{{0,242},{0,5}}" />
+			<Property name="Size"                  value="{{0,112},{0,112}}" />
+			<Window type="ProgressBar" name="Health">
+				<Property name="Position"          value="{{0,1}, {0,1}}" />
+				<Property name="Size"              value="{{1,-2},{0,8}}" />
+				<Property name="Alpha"             value="0.6" />
+			</Window>
+			<Window type="StaticImage" name="Tool">
+				<Property name="FrameEnabled"      value="False" />
+				<Property name="Position"          value="{{0.79,0},{0.79,0}}" />
+				<Property name="Size"              value="{{0.2,0},{0.2,0}}" />
+				<Property name="Alpha"             value="0.6" />
+			</Window>
+		</Window>
+		
+		<Window type="Static" name="Time">
+			<Property name="FrameEnabled"          value="False" />
+			<Property name="Position"              value="{{0,28}, {0,125}}" />
+			<Property name="Size"                  value="{{0,70}, {0,15}}" />
+			<!--Property name="Font"                  value="DejaVuSans-small" /-->
+			<Property name="HorzFormatting"        value="CentreAligned" />
+			<Property name="VertFormatting"        value="CentreAligned" />
+			<Property name="Text"                  value="00:00:00" />
+		</Window>
+		
+		<Window type="Static" name="Speed">
+			<Property name="FrameEnabled"          value="False" />
+			<Property name="BackgroundColours"     value="00000000" />
+			<Property name="Position"              value="{{0,105},{0,125}}" />
+			<Property name="Size"                  value="{{0,54}, {0,17}}" />
+			
+			<Window type="Button" name="Down">
+				<Property name="Position"          value="{{0,0}, {0,1}}" />
+				<Property name="Size"              value="{{0,15},{0,15}}" />
+				<Property name="Font"              value="DejaVuSans-small" />
+				<Property name="Text"              value="-" />
+			</Window>
+			<Window type="Static" name="Value">
+				<Property name="FrameEnabled"      value="False" />
+				<Property name="Position"          value="{{0,16},{0, 2}}" />
+				<Property name="Size"              value="{{0,20},{0,13}}" />
+				<Property name="Font"              value="DejaVuSans-small" />
+				<Property name="HorzFormatting"    value="CentreAligned" />
+				<Property name="VertFormatting"    value="CentreAligned" />
+				<Property name="Text"              value="1.0" />
+			</Window>
+			<Window type="Button" name="Up">
+				<Property name="Position"          value="{{0,39},{0,1}}" />
+				<Property name="Size"              value="{{0,15},{0,15}}" />
+				<Property name="Font"              value="DejaVuSans-small" />
+				<Property name="Text"              value="+" />
+			</Window>
+		</Window>
+		
+		<Window type="Button" name="PlayPause">
+			<Property name="Position"              value="{{0,169},{0,122}}" />
+			<Property name="Size"                  value="{{0,50}, {0,23}}" />
+			<Property name="Font"                  value="DejaVuSans-small" />
+			<UserString name="txt:onUnpaused:en"   value="Pause" />
+			<UserString name="txt:onUnpaused:pl"   value="Zatrzymaj" />
+			<UserString name="txt:onPaused:en"     value="Unpause" />
+			<UserString name="txt:onPaused:pl"     value="Uruchom" />
+		</Window>
+		
+		<Window type="Button" name="ShowMap">
+			<Property name="Position"              value="{{0,232},{0,122}}" />
+			<Property name="Size"                  value="{{0,50}, {0,23}}" />
+			<Property name="Font"                  value="DejaVuSans-small" />
+			<UserString name="txt:en"              value="Show Map" />
+			<UserString name="txt:pl"              value="Mapa" />
+		</Window>
+		
+		<Window type="Button" name="MainMenu">
+			<Property name="Position"              value="{{0,295},{0,122}}" />
+			<Property name="Size"                  value="{{0,50}, {0,23}}" />
+			<Property name="Font"                  value="DejaVuSans-small" />
+			<UserString name="txt:en"              value="Main Menu" />
+			<UserString name="txt:pl"              value="Menu Główne" />
+		</Window>
+	</Window>
+</GUILayout>

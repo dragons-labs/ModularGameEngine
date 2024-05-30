@@ -1,0 +1,59 @@
+<Translations>
+	<Property name="STOP" type="String">
+		<G11n>
+			<value>STOP: cancel all queued actions</value>
+		</G11n>
+		<G11n lang="pl">
+			<value>STOP: anuluj całą kolejkę akcji</value>
+		</G11n>
+	</Property>
+	<Property name="cancel" type="String">
+		<G11n>
+			<value>cancel</value>
+		</G11n>
+		<G11n lang="pl">
+			<value>anuluj</value>
+		</G11n>
+	</Property>
+	
+	<Property name="select target OBJECTS" type="String">
+		<G11n>
+			<value>select target OBJECTS and click this button</value>
+		</G11n>
+		<G11n lang="pl">
+			<value>zaznacz obiekty, będące celami akcji i kliknij w ten przycisk</value>
+		</G11n>
+	</Property>
+	<Property name="select target AREA" type="String">
+		<G11n>
+			<value>select target AREA and click this button</value>
+		</G11n>
+		<G11n lang="pl">
+			<value>zaznacz obszar, będący celem  akcji i kliknij w ten przycisk</value>
+		</G11n>
+	</Property>
+	<Property name="select target POLYGONAL CHAIN" type="String">
+		<G11n>
+			<value>select target POLYGONAL CHAIN and click this button</value>
+		</G11n>
+		<G11n lang="pl">
+			<value>zaznacz krzywą, będącą celem akcji i kliknij w ten przycisk</value>
+		</G11n>
+	</Property>
+
+	<Property name="switch to rectangle mode" type="String">
+		<G11n>
+			<value>switch to rectangle mode</value></G11n>
+		<G11n lang="pl">
+			<value>przełącz w tryb zaznaczania prostokątem</value>
+		</G11n>
+	</Property>
+	<Property name="switch to polygonal mode" type="String">
+		<G11n>
+			<value>switch to polygonal mode</value>
+		</G11n>
+		<G11n lang="pl">
+			<value>przełącz w tryb zaznaczania wielokątem</value>
+		</G11n>
+	</Property>
+</Translations>

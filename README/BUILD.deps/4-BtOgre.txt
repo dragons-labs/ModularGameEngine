@@ -1,0 +1,24 @@
+BUILD FROM SOURCE
+=================
+
+git clone https://github.com/Ybalrid/BtOgre2
+cd BtOgre2
+
+mkdir build; cd build
+
+cmake ..
+make -j5
+sudo make install; sudo ldconfig
+
+
+build and check with version
+----------------------------
+
+commit 1a34b3bd8e59c7515192e7b3d39b6f08ae638f6f (HEAD -> master, origin/master, origin/HEAD)
+Merge: 2cb76d4 47aeea0
+Author: Arthur Brainville <ybalrid@ybalrid.info>
+Date:   Sat May 25 21:35:45 2024 +0200
+
+    Merge pull request #26 from rpaciorek/master
+    
+    support for Ogre-Next 3.0 and 4.0

@@ -1,0 +1,155 @@
+#ifndef MGE_GLOBAL_CONFIG_H
+#define MGE_GLOBAL_CONFIG_H
+
+/// @defgroup BuildOptions
+/// @brief  Build time configuration options
+
+/// @addtogroup BuildOptions
+/// @{
+/// @file
+/// @brief Template for cmake to generate config.h header
+
+/// string with git commit id used to build engine
+extern const char* ENGINE_GIT_VERSION;
+
+/// string with engine build time
+extern const char* ENGINE_BUILD_TIME;
+
+/// set by cmake to CMAKE_SYSTEM_NAME
+#define TARGET_SYSTEM "@CMAKE_SYSTEM_NAME@"
+/// set by cmake if TARGET_SYSTEM is POSIX
+#cmakedefine TARGET_SYSTEM_IS_UNIX
+/// set by cmake if TARGET_SYSTEM is Windows
+#cmakedefine TARGET_SYSTEM_IS_WINDOWS
+
+
+/// @name MGE Build settings
+/// @{
+
+/// if set then stacktrace will be print in crash messages using `boost::stacktrace`
+#define USE_BOOST_STACKTRACE
+/// if set then stacktrace will be print in crash messages using `execinfo.h`, ignored when USE_BOOST_STACKTRACE is set
+#define USE_BACKTRACE
+/// set by cmake, used internally by boost::stacktrace
+#cmakedefine BOOST_STACKTRACE_LINK
+
+/// use pthread for pathfinder
+#define PATHFINDER_SUBTHREAD
+
+/// used for define some MGE class as final
+#define MGE_CLASS_FINAL final
+
+/// Main config file path
+#ifdef TARGET_SYSTEM_IS_UNIX
+#define MGE_MAIN_CONFIG_FILE_DEFAULT_PATH "./conf/MGEConfig.xml"
+#else
+#define MGE_MAIN_CONFIG_FILE_DEFAULT_PATH "../conf/MGEConfig.xml"
+#endif
+
+/// Main config file path
+#ifdef TARGET_SYSTEM_IS_UNIX
+#define MGE_LOG_FILE_DEFAULT_PATH "./game-engine.log"
+#else
+#define MGE_LOG_FILE_DEFAULT_PATH "../game-engine.log"
+#endif
+
+/// @brief set to call `void createGameControler()` function while init game engine
+///
+/// this allow call (initialise) any user code after init engine but before start rendering
+/// function `void createGameControler()` must be defined in project or linked libraries
+/// see `engine-src/game/Game.cpp` for example
+#define MGE_USE_GAMECONTROLER
+
+/// GUI support via CEGUI
+#define USE_CEGUI
+
+/// 3D audio support
+#cmakedefine USE_OGGSOUND
+
+/// video texture support
+#cmakedefine USE_OGGVIDEO
+
+/// @}
+
+
+/// @name Bullet physics support
+/// @{
+	/// when set using Bullet for physics and raycasting
+	#cmakedefine USE_BULLET
+	/// set when have BulletWorldImporter
+	#cmakedefine USE_BULLET_IMPORTER
+	/// set on UNIX targets for use pthreads multithreading in Bullet
+	#cmakedefine BULLET_USE_POSIX_THREADS
+	/// maximum numbers of Bullet Dispatcher threads (0 for disable multithreading)
+	#define BULLET_MAX_DISPATCHER_THREADS @BULLET_MAX_DISPATCHER_THREADS@
+	/// maximum numbers of Bullet Solver threads (0 for disable multithreading)
+	#define BULLET_MAX_SOLVER_THREADS     @BULLET_MAX_SOLVER_THREADS@
+/// @}
+
+
+/* Chromium Embedded Framework */
+/* #undef / #define USE_CEF  -->  moved to config-cef.h */
+
+
+/// @name MGE Debug options
+/// @{
+
+#undef  RELEASE
+
+/// path to store Ogre HLMS debug info
+#define MGE_DEBUG_HLMS_PATH "./hlmsDebug/"
+
+/// @note to reduce header dependencies not all files include config.h, so global debug options should be set via cmake `MGE_DEBUG_OPTIONS` option
+//        bellow options are listed for documentation purpose only
+#ifdef __DOCUMENTATION_GENERATOR__
+	#define MGE_DEBUG_LEVEL 2                           ///< global primary debug info verbosity level (0 - disable, 1, 2 - full debug)
+	
+	#define MGE_DEBUG_CAMERA_MARKER                     ///< show camera scene node marker
+	#define MGE_DEBUG_PHYSICS_DRAW                      ///< show Bullet physics objects
+	
+	#define MGE_DEBUG_PATHFINDER_VISUAL_GRID            ///< show grid search visualisation in PathFinder::findPath()
+	#define MGE_DEBUG_PATHFINDER1                       ///< print debug info on path cleaning in PathFinder::findPath()
+	#define MGE_DEBUG_PATHFINDER2                       ///< print debug info on final step    in PathFinder::findPath()
+	#define MGE_DEBUG_PATHFINDER3                       ///< print debug info on any step      in PathFinder::findPath()
+	#define MGE_DEBUG_PATHFINDER_VISUAL_PATH            ///< show path visualisation (by OBBoxRenderable) in PathFinder::findPath()
+
+	#define MGE_DEBUG_MOVE                              ///< print debug info                  in World3DMovable::initMove(),  World3DObject::canMove(), World3DMovable::doMoveStep(), ...
+	#define MGE_DEBUG_MOVE_GNUPLOT                      ///< print gnuplot debug script        in World3DMovable::initMove(),  World3DObject::canMove(), World3DMovable::doMoveStep(), ...
+	#define MGE_DEBUG_IS_FREE_POSITION                  ///< print debug info                  in ColisionBoundingBox::isFreePosition
+
+	#define MGE_DEBUG_HEXAGONAL_GRID                    ///< print debug messages              in MGE::Utils::Logics::HexagonalGridPoint
+	#define MGE_DEBUG_FREEPATH_VISUAL                   ///< show rescaled AABB in MGE::Utils::OGRE::isFreePath
+	#define MGE_DEBUG_INTERSECTS_VISUAL                 ///< show AABB in MGE::Utils::OGRE::ColisionBoundingBox
+	#define MGE_DEBUG_INTERSECTS_VISUAL_MARKER_SCALE 1  ///< scale for AABB visual marker (used only when MGE_DEBUG_INTERSECTS_VISUAL is defined)
+	#define MGE_DEBUG_MESH_RAYCAST_UV                   ///< print UV debug info               in MGE::Utils::OGRE::MeshRaycast
+	#define MGE_DEBUG_SELECTION_VISUAL                  ///< show hit points at AABB in results of selection raycasting
+
+	#define MGE_DEBUG_MICROPATHER1                      ///< print debug info in micropather.cpp
+	#define MGE_DEBUG_MICROPATHER2                      ///< print extremely verbose debug info in micropather.cpp
+
+	#define MGE_DEBUG_HLMS_SIMPLE_SHADER                ///< print debug info in MGE::HlmsSimpleShader
+	#define MGE_DEBUG_INTERSECTS_VISUAL_MARKER_SCALE
+	#define MGE_DEBUG_MOUSE_VIEWPORT_POSITION
+	#define MGE_DEBUG_PATH_DEEP
+	#define MGE_DEBUG_PREFILL_TEXTURE
+	#define MGE_DEBUG_SINGLETON
+	#define MGE_DEBUG_TIMERS
+
+#else
+	#define MGE_DEBUG_CAMERA_MARKER
+	#define MGE_DEBUG_PHYSICS_DRAW
+#endif
+
+/// @}
+
+
+#ifdef PATHFINDER_SUBTHREAD
+	#if defined(MGE_DEBUG_FREEPATH_VISUAL) || defined(MGE_DEBUG_INTERSECTS_VISUAL) || defined(MGE_DEBUG_PATHFINDER_VISUAL_PATH)
+		#warning using MGE_DEBUG_FREEPATH_VISUAL, MGE_DEBUG_PATHFINDER_VISUAL_PATH or MGE_DEBUG_INTERSECTS_VISUAL with PATHFINDER_SUBTHREAD is a bad idea ... undef PATHFINDER_SUBTHREAD for you.
+		#undef PATHFINDER_SUBTHREAD
+	#endif
+#endif
+
+/// @}
+
+#endif

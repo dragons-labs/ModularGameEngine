@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<GUILayout version="4">
+	<Window type="FrameWindow" name="GameCmdConsole">
+		<Property name="Size"     value="{{0.74, 0}, {0.39,  0}}" />
+		<Property name="Position" value="{{0.13,0},  {0.13,0}}" />
+		<Property name="AlwaysOnTop" value="True" />
+		<Property name="CloseButtonEnabled"  value="True" />
+		<Property name="TitlebarFont" value="DejaVuSans" />
+		<UserString name="txt:en" value="Console" />
+		<UserString name="txt:pl" value="Konsola" />
+
+		<Window type="Button" name="Submit">
+			<Property name="VerticalAlignment" value="Bottom" />
+			<Property name="HorizontalAlignment" value="Right" />
+			<Property name="Position" value="{{0,-17},{0,-40}}" />
+			<Property name="Size" value="{{0,100},{0,27}}" />
+			<UserString name="txt:en" value="Submit" />
+			<UserString name="txt:pl" value="Wykonaj" />
+		</Window>
+
+		<Window type="Checkbox" name="EnterToSubmit">
+			<Property name="VerticalAlignment" value="Bottom" />
+			<Property name="HorizontalAlignment" value="Right" />
+			<Property name="Position" value="{{0,0},{0,-6}}" />
+			<Property name="Size" value="{{0,120},{0,30}}" />
+			<Property name="Selected" value="True" />
+			<UserString name="txt:en" value="  use enter&#10;  to submit" />
+			<UserString name="txt:pl" value="  użyj enter&#10;  aby wykonać" />
+		</Window>
+
+		<Window type="MultiLineEditbox" name="Command">
+			<Property name="VerticalAlignment" value="Bottom" />
+			<Property name="Position" value="{{0,3},{0,-3}}" />
+			<Property name="Size" value="{{1.0,-130},{0,75}}" />
+			<Property name="Font" value="DejaVuMono" />
+		</Window>
+
+		<Window type="MultiLineEditbox" name="History">
+			<Property name="ReadOnly" value="True" />
+			<Property name="Position" value="{{0,3},{0,3}}" />
+			<Property name="Size" value="{{1,-14},{1,-81}}" />
+			<Property name="Font" value="DejaVuMono" />
+			<Property name="Text"></Property>
+		</Window>
+	</Window>
+</GUILayout>

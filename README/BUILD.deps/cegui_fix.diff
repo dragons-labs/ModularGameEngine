@@ -1,0 +1,16 @@
+diff --git a/cegui/src/WindowRendererSets/Core/MultiColumnList.cpp b/cegui/src/WindowRendererSets/Core/MultiColumnList.cpp
+index 99829a9f8..dfb911945 100644
+--- a/cegui/src/WindowRendererSets/Core/MultiColumnList.cpp
++++ b/cegui/src/WindowRendererSets/Core/MultiColumnList.cpp
+@@ -147,8 +147,9 @@ namespace CEGUI
+ 
+                     // Create render geometry for this item and add it to the Window
+                     item->setSelectionColours(selectionBgCol);
+-                    if (auto textItem = dynamic_cast<ListboxTextItem*>(item))
+-                        textItem->setTextColours(textItem->isSelected() ? selectedTextCol : normalTextCol);
++// BUG /* override ListboxTextItem custom color set by setTextColours() */
++// BUG                    if (auto textItem = dynamic_cast<ListboxTextItem*>(item))
++// BUG                        textItem->setTextColours(textItem->isSelected() ? selectedTextCol : normalTextCol);
+                     item->createRenderGeometry(w->getGeometryBuffers(), itemRect, alpha, &itemClipper);
+                 }
+ 

@@ -1,0 +1,45 @@
+# project settings
+PROJECT_NAME           = "Modular Game Engine"
+OUTPUT_DIRECTORY       = @PROJECT_BINARY_DIR@/Documentation
+LAYOUT_FILE            = @PROJECT_SOURCE_DIR@/docs-src/DoxygenLayout.xml
+INPUT                  = @PROJECT_SOURCE_DIR@/docs-src/ @PROJECT_SOURCE_DIR@/engine-src/ @PROJECT_SOURCE_DIR@/resources-src/ConfigFiles/MGEConfig.xml.in @PROJECT_SOURCE_DIR@/config.h.ii @PROJECT_SOURCE_DIR@/config-cef.h.ii
+EXAMPLE_PATH           = @PROJECT_BINARY_DIR@/README.html_incl
+IMAGE_PATH             = @PROJECT_SOURCE_DIR@/docs-src
+
+# macro settings
+MACRO_EXPANSION        = YES
+PREDEFINED             = DOXYGEN_MODE __DOCUMENTATION_GENERATOR__ USE_BULLET MGE_CLASS_FINAL=final __attribute__((x))=
+EXPAND_AS_DEFINED      = FORCE_INLINE
+EXPAND_ONLY_PREDEF     = YES
+#INPUT_FILTER           = "sed -e 's#MGE_CLASS_FINAL#final#g'"
+
+# file system settings
+CASE_SENSE_NAMES       = YES
+RECURSIVE              = YES
+
+# extraction settings
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = YES
+EXTRACT_PRIVATE        = YES
+EXCLUDE_SYMBOLS        = Ogre,OIS,CEGUI,boost,std,pugi
+BUILTIN_STL_SUPPORT    = YES
+
+# output settings
+ALWAYS_DETAILED_SEC    = YES
+DISTRIBUTE_GROUP_DOC   = YES
+GENERATE_TODOLIST      = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
+HTML_DYNAMIC_SECTIONS  = YES
+MAX_INITIALIZER_LINES  = 0
+SOURCE_BROWSER         = YES
+
+# graph settings
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DOT_CLEANUP            = NO
+DOT_GRAPH_MAX_NODES    = 100
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES

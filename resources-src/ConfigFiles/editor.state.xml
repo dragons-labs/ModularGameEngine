@@ -1,0 +1,27 @@
+<SavedState>
+	<CameraSystem>
+		<default>PlayerCamera</default>
+		<current>PlayerCamera</current>
+		<CameraNodes>
+			<PlayerCamera>
+				<Place>
+					<Position>
+						<x>-35</x>
+						<y>1</y>
+						<z>15</z>
+					</Position>
+					<Orientation>
+						<w>1.000000000e+00</w>
+						<x>0.000000000e+00</x>
+						<y>0.000000000e+00</y>
+						<z>0.000000000e+00</z>
+					</Orientation>
+					<Yaw>-1.3</Yaw>
+					<Pitch>0.615</Pitch>
+					<Zoom>58</Zoom>
+					<FOVMax>0.785</FOVMax>
+				</Place>
+			</PlayerCamera>
+		</CameraNodes>
+	</CameraSystem>
+</SavedState>

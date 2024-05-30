@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static">
+		<Property name="BackgroundColours" value="bb666666" />
+		<Property name="FrameEnabled"      value="False" />
+		<Property name="Size"              value="{{1.0,0}, {0.0,40}}" />
+		
+		<Window type="StaticImage"         name="Image">
+			<Property name="Size"              value="{{0,44}, {1.0, -4}}" />
+			<Property name="Position"          value="{{0,2},  {0,2}}" />
+			<Property name="FrameEnabled"      value="False" />
+		</Window>
+		
+		<Window type="Spinner"             name="Count" >
+			<Property name="StepSize"          value="1" />
+			<Property name="Size"              value="{{0.0, 50}, {0.0, 24}}" />
+			<Property name="Position"          value="{{1.0,-54}, {0,2}}" />
+			<Property name="CurrentValue"      value="1" />
+			<Property name="MinimumValue"      value="0" />
+		</Window>
+		
+		<Window type="StaticText"         name="Text">
+			<Property name="Size"              value="{{0.0, 52}, {0,10}}" />
+			<Property name="Position"          value="{{1.0,-54},  {0,30}}" />
+			<Property name="FrameEnabled"      value="False" />
+			<Property name="BackgroundColours" value="00000000" />
+			<Property name="HorzFormatting"    value="CentreAligned" />
+			<Property name="Font"              value="DejaVuSans-small" />
+		</Window>
+	</Window>
+</GUILayout>

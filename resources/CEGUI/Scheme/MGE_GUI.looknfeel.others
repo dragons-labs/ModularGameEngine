@@ -1,0 +1,906 @@
+<?xml version="1.0" ?>
+<Falagard version="7">
+    <!--
+    ***************************************************
+        RadioButton
+    ***************************************************
+    -->
+    <WidgetLook name="RadioButton">
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="NormalTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="HoverTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="PushedTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF888888" type="ColourRect" name="DisabledTextColour"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <ImagerySection name="label">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/RadioButtonNormal" dimension="Width"/>
+                            <AbsoluteDim value="4"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="LeftAligned"/>
+            </TextComponent>
+        </ImagerySection>
+        <ImagerySection name="normal">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/RadioButtonNormal"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="LeftAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="hover">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/RadioButtonHover"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="LeftAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="select_mark">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/RadioButtonMark"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="LeftAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal"/>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="hover"/>
+                <Section section="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="SelectedNormal">
+            <Layer>
+                <Section section="normal"/>
+                <Section section="select_mark"/>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="SelectedHover">
+            <Layer>
+                <Section section="hover"/>
+                <Section section="select_mark"/>
+                <Section section="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        Menubar
+    ***************************************************
+    -->
+    <WidgetLook name="Menubar">
+        <PropertyDefinition redrawOnWrite="true" initialValue="tl:FFDFEFF5 tr:FFDFDFF5 bl:FFF4F3F5 br:FFF4F3F5" type="ColourRect" name="BackgroundColours"/>
+        <PropertyDefinition layoutOnWrite="true" initialValue="5" type="float" name="BorderWidth"/>
+        <Property name="Size" value="{{1, 0}, {0, 32}}" />
+        <NamedArea name="ItemRenderArea">
+            <Area>
+                <Dim type="LeftEdge">
+                    <OperatorDim op="Add">
+                        <ImageDim name="MGE_GUI_ImageSet/MenuLeft" dimension="Width"/>
+                        <PropertyDim name="BorderWidth"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="TopEdge">
+                    <OperatorDim op="Add">
+                        <ImageDim name="MGE_GUI_ImageSet/MenuTop" dimension="Height"/>
+                        <PropertyDim name="BorderWidth"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="RightEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/MenuRight" dimension="Width"/>
+                            <PropertyDim name="BorderWidth"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/MenuBottom" dimension="Height"/>
+                            <PropertyDim name="BorderWidth"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <ImagerySection name="frame">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/MenuTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/MenuTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/MenuBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/MenuBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/MenuLeft"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/MenuRight"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/MenuTop"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/MenuBottom"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/Background"/>
+                <ColourRectProperty name="BackgroundColours"/>
+            </FrameComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="frame"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="frame"/>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        TabButton
+    ***************************************************
+    -->
+    <WidgetLook name="TabButton">
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="NormalTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="HoverTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="PushedTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000010" type="ColourRect" name="SelectedTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF888888" type="ColourRect" name="DisabledTextColour"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <ImagerySection name="label">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="CentreAligned"/>
+            </TextComponent>
+        </ImagerySection>
+        <ImagerySection name="normal">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/TabButtonUpperLeftNormal"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/TabButtonUpperRightNormal"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/TabButtonLowerLeftNormal"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/TabButtonLowerRightNormal"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/TabButtonLeftNormal"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/TabButtonRightNormal"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/TabButtonUpperNormal"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/TabButtonLowerNormal"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/TabButtonMiddleNormal"/>
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="top_selected">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/TabButtonUpperLeftSelected"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/TabButtonUpperSelected"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/TabButtonUpperRightSelected"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/TabButtonLeftSelected"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/TabButtonMiddleSelected"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/TabButtonRightSelected"/>
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="bot_selected">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/TabButtonLeftSelected"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/TabButtonMiddleSelected"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/TabButtonRightSelected"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/TabButtonLowerLeftSelected"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/TabButtonLowerSelected"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/TabButtonLowerRightSelected"/>
+            </FrameComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal"/>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="selected"/>
+                <Section section="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="TopSelected">
+            <Layer>
+                <Section section="top_selected"/>
+                <Section section="label">
+                    <ColourProperty name="SelectedTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="BottomSelected">
+            <Layer>
+                <Section section="bot_selected"/>
+                <Section section="label">
+                    <ColourProperty name="SelectedTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal"/>
+                <Section section="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        TabControl
+    ***************************************************
+    -->
+    <WidgetLook name="TabControl">
+        <Property name="TabButtonType" value="TabButton"/>
+        <Property name="TabTextPadding" value="{0,4}"/>
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <Child nameSuffix="__auto_TabPane__" type="TabContentPane">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <OperatorDim op="Multiply">
+                        <PropertyDim widget="__auto_TabPane__" name="EnableBottom"/>
+                        <PropertyDim type="Height" name="TabHeight"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Height">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="Height"/>
+                        <PropertyDim type="Height" name="TabHeight"/>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </Child>
+        <Child nameSuffix="__auto_TabPane__Buttons" type="TabButtonPane">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <OperatorDim op="Multiply">
+                        <PropertyDim widget="__auto_TabPane__Buttons" name="EnableTop"/>
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Height"/>
+                            <PropertyDim type="Height" name="TabHeight"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Height">
+                    <PropertyDim type="Height" name="TabHeight"/>
+                </Dim>
+            </Area>
+        </Child>
+        <Child nameSuffix="__auto_TabPane__ScrollLeft" type="SystemButton">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="6"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <OperatorDim op="Add">
+                        <WidgetDim widget="__auto_TabPane__" dimension="TopEdge"/>
+                        <OperatorDim op="Add">
+                            <AbsoluteDim value="4"/>
+                            <OperatorDim op="Multiply">
+                                <PropertyDim widget="__auto_TabPane__Buttons" name="EnableTop"/>
+                                <OperatorDim op="Subtract">
+                                    <WidgetDim widget="__auto_TabPane__" dimension="Height"/>
+                                    <OperatorDim op="Add">
+                                        <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Width"/>
+                                        <AbsoluteDim value="6"/>
+                                    </OperatorDim>
+                                </OperatorDim>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Width">
+                    <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Width"/>
+                </Dim>
+                <Dim type="Height">
+                    <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Height"/>
+                </Dim>
+            </Area>
+            <Property name="AlwaysOnTop" value="true"/>
+            <Property name="NormalImage" value="MGE_GUI_ImageSet/TabButtonScrollLeftNormal"/>
+            <Property name="HoverImage" value="MGE_GUI_ImageSet/TabButtonScrollLeftHover"/>
+            <Property name="PushedImage" value="MGE_GUI_ImageSet/TabButtonScrollLeftHover"/>
+        </Child>
+        <Child nameSuffix="__auto_TabPane__ScrollRight" type="SystemButton">
+            <Area>
+                <Dim type="LeftEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="Width"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Width"/>
+                            <AbsoluteDim value="6"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="TopEdge">
+                    <OperatorDim op="Add">
+                        <WidgetDim widget="__auto_TabPane__" dimension="TopEdge"/>
+                        <OperatorDim op="Add">
+                            <AbsoluteDim value="4"/>
+                            <OperatorDim op="Multiply">
+                                <PropertyDim widget="__auto_TabPane__Buttons" name="EnableTop"/>
+                                <OperatorDim op="Subtract">
+                                    <WidgetDim widget="__auto_TabPane__" dimension="Height"/>
+                                    <OperatorDim op="Add">
+                                        <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Width"/>
+                                        <AbsoluteDim value="6"/>
+                                    </OperatorDim>
+                                </OperatorDim>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Width">
+                    <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Width"/>
+                </Dim>
+                <Dim type="Height">
+                    <ImageDim name="MGE_GUI_ImageSet/TabButtonScrollLeftNormal" dimension="Height"/>
+                </Dim>
+            </Area>
+            <Property name="AlwaysOnTop" value="true"/>
+            <Property name="NormalImage" value="MGE_GUI_ImageSet/TabButtonScrollRightNormal"/>
+            <Property name="HoverImage" value="MGE_GUI_ImageSet/TabButtonScrollRightHover"/>
+            <Property name="PushedImage" value="MGE_GUI_ImageSet/TabButtonScrollRightHover"/>
+        </Child>
+        <StateImagery name="Enabled"/>
+        <StateImagery name="Disabled"/>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        TabContentPane
+    ***************************************************
+    -->
+    <WidgetLook name="TabContentPane">
+        <PropertyDefinition layoutOnWrite="true" redrawOnWrite="true" initialValue="0" name="EnableTop"/>
+        <PropertyDefinition layoutOnWrite="true" redrawOnWrite="true" initialValue="0" name="EnableBottom"/>
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <ImagerySection name="normal">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Multiply">
+                            <ImageDim name="MGE_GUI_ImageSet/TabContentPaneUpperLeft" dimension="Height"/>
+                            <PropertyDim name="EnableTop"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/TabContentPaneUpperLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/TabContentPaneTop"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/TabContentPaneUpperRight"/>
+            </FrameComponent>
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <OperatorDim op="Multiply">
+                            <ImageDim name="MGE_GUI_ImageSet/TabContentPaneUpperLeft" dimension="Height"/>
+                            <PropertyDim name="EnableTop"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Height"/>
+                            <OperatorDim op="Multiply">
+                                <ImageDim name="MGE_GUI_ImageSet/TabContentPaneLowerLeft" dimension="Height"/>
+                                <PropertyDim name="EnableBottom"/>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/TabContentPaneLeft"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/TabContentPaneMiddle"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/TabContentPaneRight"/>
+            </FrameComponent>
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Height"/>
+                            <OperatorDim op="Multiply">
+                                <ImageDim name="MGE_GUI_ImageSet/TabContentPaneLowerLeft" dimension="Height"/>
+                                <PropertyDim name="EnableBottom"/>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/TabContentPaneLowerLeft"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/TabContentPaneLower"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/TabContentPaneLowerRight"/>
+            </FrameComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="normal"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FF7F7F7F" bottomLeft="FF7F7F7F" topRight="FF7F7F7F" bottomRight="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+    <!--
+    ***************************************************
+        TabButtonPane
+    ***************************************************
+    -->
+    <WidgetLook name="TabButtonPane">
+        <PropertyDefinition layoutOnWrite="true" redrawOnWrite="true" initialValue="1" name="EnableTop"/>
+        <PropertyDefinition layoutOnWrite="true" redrawOnWrite="true" initialValue="1" name="EnableBottom"/>
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <ImagerySection name="normal">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Multiply">
+                            <ImageDim name="MGE_GUI_ImageSet/TabHorizontalTopFiller" dimension="Height"/>
+                            <PropertyDim name="EnableTop"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/TabHorizontalTopFiller"/>
+            </FrameComponent>
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <OperatorDim op="Multiply">
+                            <ImageDim name="MGE_GUI_ImageSet/TabHorizontalTopFiller" dimension="Height"/>
+                            <PropertyDim name="EnableTop"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Height"/>
+                            <OperatorDim op="Multiply">
+                                <ImageDim name="MGE_GUI_ImageSet/TabHorizontalBottomFiller" dimension="Height"/>
+                                <PropertyDim name="EnableBottom"/>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+            </FrameComponent>
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Height"/>
+                            <OperatorDim op="Multiply">
+                                <ImageDim name="MGE_GUI_ImageSet/TabHorizontalBottomFiller" dimension="Height"/>
+                                <PropertyDim name="EnableBottom"/>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/TabHorizontalBottomFiller"/>
+            </FrameComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="normal"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FF7F7F7F" bottomLeft="FF7F7F7F" topRight="FF7F7F7F" bottomRight="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        SliderThumb
+    ***************************************************
+    -->
+    <WidgetLook name="SliderThumb">
+        <Property name="HorzFree" value="true"/>
+        <Property name="CursorInputPropagationEnabled" value="true"/>
+        <ImagerySection name="normal">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/SliderThumbNormal"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="hover">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/SliderThumbHover"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="hover"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Pushed">
+            <Layer>
+                <Section section="hover"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FF7F7F7F" bottomLeft="FF7F7F7F" topRight="FF7F7F7F" bottomRight="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+    <!--
+    ***************************************************
+        Slider
+    ***************************************************
+    -->
+    <WidgetLook name="Slider">
+        <Property name="VerticalSlider" value="true"/>
+        <Property name="CursorAutoRepeatEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 256}}" />
+        <NamedArea name="ThumbTrackArea">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <UnifiedDim scale="1.0" type="RightEdge"/>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <UnifiedDim scale="1.0" type="BottomEdge"/>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <Child nameSuffix="__auto_thumb__" type="SliderThumb">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <ImageDim name="MGE_GUI_ImageSet/SliderThumbNormal" dimension="Width"/>
+                </Dim>
+                <Dim type="Height">
+                    <ImageDim name="MGE_GUI_ImageSet/SliderThumbNormal" dimension="Height"/>
+                </Dim>
+            </Area>
+            <VertAlignment type="CentreAligned"/>
+        </Child>
+        <ImagerySection name="track">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <OperatorDim op="Multiply">
+                            <ImageDim name="MGE_GUI_ImageSet/SliderThumbNormal" dimension="Width"/>
+                            <AbsoluteDim value="0.5"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="0.5" type="TopEdge"/>
+                            <OperatorDim op="Multiply">
+                                <ImageDim name="MGE_GUI_ImageSet/SlidertrackMiddle" dimension="Height"/>
+                                <AbsoluteDim value="0.5"/>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1.0" type="RightEdge"/>
+                            <OperatorDim op="Multiply">
+                                <ImageDim name="MGE_GUI_ImageSet/SliderThumbNormal" dimension="Width"/>
+                                <AbsoluteDim value="0.5"/>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Height">
+                        <ImageDim name="MGE_GUI_ImageSet/SlidertrackMiddle" dimension="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/SliderTrackLeft"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/SliderTrackRight"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/SlidertrackMiddle"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </FrameComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="track"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="track"/>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+    
+    <!--
+    ***************************************************
+        Label
+    ***************************************************
+    -->
+    <WidgetLook name="Label">
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="Colour" name="NormalTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF444444" type="Colour" name="DisabledTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="CentreAligned" type="VerticalTextFormatting" name="VertFormatting"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="CentreAligned" type="HorizontalTextFormatting" name="HorzFormatting"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="false" type="bool" name="WordWrap"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <ImagerySection name="Label">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <VertFormatProperty name="VertFormatting"/>
+                <HorzFormatProperty name="HorzFormatting"/>
+                <WordWrap property="WordWrap"/>
+            </TextComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="Label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="Label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+</Falagard>

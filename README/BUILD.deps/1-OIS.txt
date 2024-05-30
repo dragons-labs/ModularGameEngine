@@ -1,0 +1,21 @@
+BUILD FROM SOURCE
+=================
+
+git clone https://github.com/wgois/OIS
+cd OIS
+
+mkdir build; cd build
+cmake ..
+make -j5
+sudo make install; sudo ldconfig
+
+
+build and check with version
+----------------------------
+
+commit 27928350a7a7be9dd7e12e44d534a20265784ae2 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 8ed3270 b52cc7b
+Author: Arthur Brainville <ybalrid@ybalrid.info>
+Date:   Sun Nov 26 10:52:37 2023 +0100
+
+    Merge pull request #91 from lucypero/patch-1

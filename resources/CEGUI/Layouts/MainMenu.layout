@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static"                   		name="MainMenuBackground">
+		<UserString name="BackgroundTransparent"		value="7fDFDFDF" />
+		<UserString name="BackgroundNoTransparent"		value="ffBFBFBF" />
+		<Property name="Position"               		value="{{0,-2}, {0,-2}}" />
+		<Property name="Size"                   		value="{{1,4}, {1,4}}" />
+		<Property name="AlwaysOnTop"            		value="True" />
+
+		<Window type="StaticImage"              	name="LoadingScreen">
+			<Property name="VerticalAlignment"      	value="Centre" />
+			<Property name="HorizontalAlignment"    	value="Centre" />
+			<Property name="Size"                   	value="{{0.95,0}, {0.95,0}}" />
+			<Window type="Static"                   name="Info">
+				<Property name="BackgroundColours"      value="00000000" />
+				<Property name="FrameColours"           value="00000000" />
+				<Property name="TextColour"             value="ffff0000" />
+				<Property name="HorzFormatting"         value="CentreAligned" />
+				<Property name="Position"               value="{{0.5,-200},  {0,10}}" />
+				<Property name="Size"                   value="{{0,400}, {0,20}}" />
+				<Property name="Text"                   value="Loading ..." />
+			</Window>
+			<Window type="ProgressBar"              name="Progress">
+				<Property name="Position"               value="{{0.5,-150},  {1,-30}}" />
+				<Property name="Size"                   value="{{0,300}, {0,15}}" />
+				<Property name="ProgressColour"         value="ff00ffff" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   	name="MainMenu">
+			<Property name="BackgroundColours"      	value="7fDFDFDF" />
+			<Property name="FrameColours"           	value="00000000" />
+			<Property name="VerticalAlignment"      	value="Centre" />
+			<Property name="HorizontalAlignment"    	value="Centre" />
+			<Property name="Size"                   	value="{{0,220}, {0,290}}" />
+			<Property name="Alpha"                  	value="1.0" />
+			
+			<Window type="Button"                   name="MainMenu : Start Game">
+				<Property name="Position"               value="{{0,10},  {0,10}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<UserString name="txt:pl"               value="Uruchom misję" />
+			</Window>
+			<Window type="Button"                   name="MainMenu : Save / Load">
+				<Property name="Position"               value="{{0,10},  {0,50}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<UserString name="txt:pl"               value="Zapisz / Wczytaj" />
+			</Window>
+			<Window type="Button"                   name="MainMenu : Options">
+				<Property name="Position"               value="{{0,10},  {0,90}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<Property name="Disabled"               value="True" />
+				<UserString name="txt:pl"               value="Opcje" />
+			</Window>
+			<Window type="Button"                   name="MainMenu : Editor">
+				<Property name="Position"               value="{{0,10},  {0,130}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<UserString name="txt:pl"               value="Edytor" />
+			</Window>
+			<Window type="Button"                   name="MainMenu : Help">
+				<Property name="Position"               value="{{0,10},  {0,170}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<Property name="Disabled"               value="True" />
+				<UserString name="txt:pl"               value="Pomoc" />
+			</Window>
+			<Window type="Button"                   name="MainMenu : Exit">
+				<Property name="Position"               value="{{0,10},  {0,210}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<UserString name="txt:pl"               value="Wyjście" />
+			</Window>
+			<Window type="Button"                   name="MainMenu : Continue">
+				<Property name="Position"               value="{{0,10},  {0,250}}" />
+				<Property name="Size"                   value="{{0,200}, {0,30}}" />
+				<UserString name="txt:pl"               value="Kontynuj" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   	name="EndGameMenu">
+			<Property name="BackgroundColours"      	value="7fDFDFDF" />
+			<Property name="FrameColours"           	value="00000000" />
+			<Property name="VerticalAlignment"      	value="Centre" />
+			<Property name="HorizontalAlignment"    	value="Centre" />
+			<Property name="Size"                   	value="{{0,550}, {0,340}}" />
+			<Property name="Alpha"                  	value="1.0" />
+			
+			<Window type="Static"                   name="Title">
+				<Property name="BackgroundColours"      value="00000000" />
+				<Property name="FrameColours"           value="00000000" />
+				<Property name="HorzFormatting"         value="CentreAligned" />
+				<Property name="Position"               value="{{0,10},  {0,10}}" />
+				<Property name="Size"                   value="{{0,530}, {0,20}}" />
+			</Window>
+			<Window type="StaticText"               name="Text">
+				<Property name="Position"               value="{{0,10},  {0,40}}" />
+				<Property name="Size"                   value="{{0,530}, {0,200}}" />
+			</Window>
+			<Window type="Button"                   name="EndGameMenu : Back">
+				<UserString name="txt:pl"               value="Wstecz" />
+				<Property name="Position"               value="{{0,10},  {0,300}}" />
+				<Property name="Size"                   value="{{0,100}, {0,30}}" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   	name="LoadMapMenu">
+			<Property name="BackgroundColours"      	value="7fDFDFDF" />
+			<Property name="FrameColours"           	value="00000000" />
+			<Property name="VerticalAlignment"      	value="Centre" />
+			<Property name="HorizontalAlignment"    	value="Centre" />
+			<Property name="Size"                   	value="{{0,750}, {0,340}}" />
+			<Property name="Alpha"                  	value="1.0" />
+			
+			<Window type="ListWidget"              name="MapsList">
+				<Property name="Position"               value="{{0,10},  {0,10}}" />
+				<Property name="Size"                   value="{{0,280}, {0,280}}" />
+				<Property name="HorzFormatting"         value="WordWrapLeftAligned" />
+				<Property name="TextColour"             value="ff0000ff" />
+			</Window>
+			<Window type="StaticText"              name="MapInfo">
+				<Property name="Position"               value="{{0,300}, {0,10}}" />
+				<Property name="Size"                   value="{{0,440}, {0,280}}" />
+			</Window>
+			
+			<Window type="Button"                   name="LoadMapMenu : Back">
+				<UserString name="txt:pl"               value="Wstecz" />
+				<Property name="Position"               value="{{0,10},  {0,300}}" />
+				<Property name="Size"                   value="{{0,100}, {0,30}}" />
+			</Window>
+			<Window type="Button"                   name="LoadMapMenu : Load">
+				<UserString name="txt:pl"               value="Wczytaj" />
+				<Property name="Position"               value="{{1.0,-110}, {0,300}}" />
+				<Property name="Size"                   value="{{0,100}, {0,30}}" />
+			</Window>
+		</Window>
+		
+		<Window type="Static"                   	name="OpenFileDialog">
+			<Property name="BackgroundColours"      	value="7fDFDFDF" />
+			<Property name="FrameColours"           	value="00000000" />
+			<Property name="VerticalAlignment"      	value="Centre" />
+			<Property name="HorizontalAlignment"    	value="Centre" />
+			<Property name="Size"                   	value="{{0,550}, {0,340}}" />
+			<Property name="Alpha"                  	value="1.0" />
+			
+			<Window type="Static"                   name="FullPath">
+				<Property name="FrameEnabled"           value="False" />
+				<Property name="Position"               value="{{0,10},  {0,10}}" />
+				<Property name="Size"                   value="{{0,530}, {0,20}}" />
+			</Window>
+			
+			<Window type="MultiColumnList"          name="FileList">
+				<Property name="Font"                   value="DefaultFont" />
+				<Property name="ColumnsSizable"         value="False" />
+				<Property name="ColumnsMovable"         value="False" />
+				<Property name="SortSettingEnabled"     value="True" />
+				<Property name="ForceVertScrollbar"     value="True" />
+				<Property name="Position"               value="{{0,10},  {0,40}}" />
+				<Property name="Size"                   value="{{0,530}, {0,200}}" />
+			</Window>
+			
+			<Window type="Editbox"                  name="FileNameEdit">
+				<Property name="Position"               value="{{0,10},  {0,260}}" />
+				<Property name="Size"                   value="{{0,530}, {0,30}}" />
+			</Window>
+			
+			<Window type="Button"                   name="OpenFileDialog : Back">
+				<UserString name="txt:pl"               value="Wstecz" />
+				<Property name="Position"               value="{{0,10},  {0,300}}" />
+				<Property name="Size"                   value="{{0,100}, {0,30}}" />
+			</Window>
+			<Window type="Button"                   name="OpenFileDialog : Save">
+				<UserString name="txt:pl"               value="Zapisz" />
+				<Property name="Position"               value="{{0,310}, {0,300}}" />
+				<Property name="Size"                   value="{{0,100}, {0,30}}" />
+			</Window>
+			<Window type="Button"                   name="OpenFileDialog : Load">
+				<UserString name="txt:pl"               value="Wczytaj" />
+				<Property name="Position"               value="{{0,430}, {0,300}}" />
+				<Property name="Size"                   value="{{0,100}, {0,30}}" />
+			</Window>
+		</Window>
+		
+	</Window>
+</GUILayout>

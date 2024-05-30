@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout version="4">
+	<Window type="Static" name="DialogMenu">
+		<Property name="Size"               			value="{{1.0, 0},   {0,   92}}" />
+		<Property name="Position"           			value="{{0.0, 0},   {1.0,-92}}" />
+		<Property name="BackgroundColours"  			value="B0DFDFDF" />
+		<Property name="FrameEnabled"       			value="False" />
+		<Property name="AlwaysOnTop"        			value="True" />
+		
+		<Window type="Static" name="Info">
+			<Property name="Size"               		value="{{0.0, 92},  {0.0, 92}}" />
+			<Property name="Position"           		value="{{0.0, 0},   {0.0, 0}}" />
+			<Property name="BackgroundColours"  		value="00000000" />
+			<Property name="FrameEnabled"       		value="False" />
+			<Property name="Visible"            		value="False" />
+			
+			<Window type="StaticImage" name="Image">
+				<Property name="Size"               	value="{{0.0, 64},  {0.0, 64}}" />
+				<Property name="Position"           	value="{{0.5, -36}, {0.5, -32}}" />
+				<Property name="FrameEnabled"       	value="False" />
+			</Window>
+		</Window>
+		
+		<Window type="StaticText" name="Text">
+			<Property name="Size"               		value="{{1.0, 0},  {1.0, 0}}" />
+			<Property name="Position"           		value="{{0.0, 0},  {0.0, 0}}" />
+			<Property name="BackgroundColours"  		value="00000000" />
+			<Property name="Text"               		value="" />
+			<Property name="VertScrollbar"      		value="True" />
+		</Window>
+		
+		<Window type="Static" name="Answers">
+			<Property name="Size"               		value="{{1.0, 0},  {1.0, 0}}" />
+			<Property name="Position"           		value="{{0.0, 0},  {0.0, 0}}" />
+			<Property name="BackgroundColours"  		value="00000000" />
+			<Property name="FrameEnabled"       		value="False" />
+			
+			<Window type="ListWidget" name="Answers">
+				<Property name="Size"               	value="{{1.0,-100}, {1.0, -6}}" />
+				<Property name="Position"           	value="{{0.0,5},    {0.0, 3}}" />
+				<Property name="HorzFormatting"     	value="WordWrapLeftAligned" />
+			</Window>
+			
+			<Window type="Button" name="Submit">
+				<Property name="Position"           	value="{{1.0,-85}, {0,32}}" />
+				<Property name="Size"               	value="{{0.0,75},  {0,28}}" />
+				<UserString name="txt:en" value="OK" />
+				<UserString name="txt:pl" value="OK" />
+			</Window>
+		</Window>
+	</Window>
+</GUILayout>

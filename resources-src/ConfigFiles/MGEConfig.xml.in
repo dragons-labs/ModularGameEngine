@@ -1,0 +1,88 @@
+<MGEConfig>
+	<LogSystem>
+		<LogFile>mge-game.log</LogFile>
+	</LogSystem>
+	
+	<Autostart>
+		<G11n>
+			<Language>en</Language>
+			<TranslationFile>resources/General/g11n.xml</TranslationFile>
+		</G11n>
+		
+		<RenderingSystem>
+			<WindowName>Modular Game Engine: OGRE 3D</WindowName>
+			<OgreConfigFile>conf/ogre.cfg</OgreConfigFile>
+			<PluginsConfigFile>conf/plugins.cfg</PluginsConfigFile>
+			<HLMS>@OGRE_HLMS_DIR@/../</HLMS>
+			<LoadingScreen>
+				<Entry type="dir" path="resources/General/LoadingScreen" />
+				<Entry type="dir" path="resources/General/LoadingScreen/scripts" />
+				<Entry type="dir" path="resources/General/LoadingScreen/shaders" />
+				<!-- when Open Emergency Simulator resources are available use load screen from this project -->
+				<Entry type="dir" path="resources/OpenEmergencySimulator/LoadingScreen" />
+			</LoadingScreen>
+		</RenderingSystem>
+		
+		<Resources>
+			<ResourcesConfigFile>conf/resources*.xml</ResourcesConfigFile>
+			<ResourcesConfigFile>resources/*/resources.xml</ResourcesConfigFile>
+		</Resources>
+		
+		<InputSystem/>
+		<TimeSystem/>
+		<CameraSystem/>
+		<CameraControl/>
+		
+		<AudioSystem>
+			<AudioDevice></AudioDevice>
+			<MaxSources>100</MaxSources>
+			<QueueListSize>100</QueueListSize>
+			<DistanceModel>AL_LINEAR_DISTANCE</DistanceModel>
+		</AudioSystem>
+		<VideoSystem/>
+		<AnimationSystem/>
+		
+		<Physics/>
+		<Selection>
+			<selectionBoxColour r="0" g="1" b="0" />
+			<selectionBoxLineThickness>4</selectionBoxLineThickness>
+			<selectionChainColour r="0" g="0" b="1" />
+			<selectionChainLineThickness>0.35</selectionChainLineThickness>
+		</Selection>
+		
+		<GUISystem>
+			<SchemeName>MGE_GUI</SchemeName>
+			<ImagesetName>MGE_GUI_ImageSet</ImagesetName>
+		</GUISystem>
+		
+		<LoadingSystem/>
+		
+		<PrimarySelection>
+			<Marker markerType="OBBOX BOX_PROPORTIONAL_THICKNESS CORNER_BOX" linesThickness="0.06">
+				<Color r="0.916" g="0.88" b="0.23" />
+			</Marker>
+		</PrimarySelection>
+		
+		<MainMenu/>
+		<GUIConsole/>
+		
+	</Autostart>
+	
+	<LoadAndSave>
+		<MapsConfigGroupName>MGE_MapsMainConfigs</MapsConfigGroupName>
+		<SaveDirectrory>saves</SaveDirectrory>
+		<AutoSaveDirectrory>saves/autosave</AutoSaveDirectrory>
+		<DefaultSceneFilesDirectory>resources/GameConfigs/Maps/</DefaultSceneFilesDirectory>
+		<OnCrashSaveFile>saves/autosave/Crash.xml</OnCrashSaveFile>
+		<PsedoMapConfigFile>conf/editor.xml</PsedoMapConfigFile>
+	</LoadAndSave>
+	
+	
+	<old>
+		<TimeSystem---OnScreenInfo>
+			<ShowOnScreenInfoOnPause>true</ShowOnScreenInfoOnPause>
+			<OnScreenInfoText>xxxxx  "Game Paused"  xxxxx</OnScreenInfoText>
+			<OnScreenInfoWidth>500</OnScreenInfoWidth>
+		</TimeSystem---OnScreenInfo>
+	</old>
+</MGEConfig>

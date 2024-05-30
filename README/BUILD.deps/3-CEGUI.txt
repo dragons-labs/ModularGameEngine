@@ -1,0 +1,31 @@
+BUILD FROM SOURCE
+=================
+
+git clone -b master https://github.com/cegui/cegui
+cd cegui
+
+patch -p1 < ${MGE_DIR}/README/BUILD.deps/cegui_fix.diff  # Issue#1308
+
+mkdir build; cd build
+
+cmake -D CEGUI_STRING_CLASS=UTF-8 -D CEGUI_BUILD_PYTHON_MODULES_SWIG=ON -DCEGUI_BUILD_RENDERER_OGRE=ON \
+      -D CEGUI_BUILD_XMLPARSER_PUGIXML=ON CEGUI_BUILD_XMLPARSER_EXPAT=OFF CEGUI_BUILD_XMLPARSER_LIBXML2=OFF CEGUI_BUILD_XMLPARSER_TINYXML2=OFF CEGUI_BUILD_XMLPARSER_XERCES=OFF \
+      -D CEGUI_BUILD_PYTHON_MODULES_PYPLUSPLUS=OFF \
+      -D CEGUI_BUILD_RENDERER_OPENGLES=OFF -D CEGUI_BUILD_RENDERER_OPENGLES2_ALTERNATE=OFF -D CEGUI_BUILD_RENDERER_OPENGLES2_ALTERNATE_WITH_GLES3_SUPPORT=OFF -D CEGUI_BUILD_APPLICATION_TEMPLATES=OFF \
+      -D CEGUI_BUILD_RENDERER_OPENGL=OFF -D CEGUI_BUILD_RENDERER_OPENGL3=OFF -D CEGUI_BUILD_SAMPLES=OFF ..
+      # can turn on CEGUI_BUILD_RENDERER_OPENGL, CEGUI_BUILD_RENDERER_OPENGL3 and CEGUI_BUILD_SAMPLES, but need packages: libglew-dev libglfw3-dev
+make -j5
+sudo make install; sudo ldconfig
+
+
+build and check with version
+----------------------------
+
+commit 3791ebb62b10348d5f92be9669edd1962cc4f53b (HEAD -> master, origin/master, origin/HEAD)
+Merge: 43a1345ef 14e57a285
+Author: Lukas M <git@lukasmeindl.at>
+Date:   Sun May 26 11:45:12 2024 +0200
+
+    Merge pull request #1307 from rpaciorek/master
+    
+    update / fix SWIG Python interface

@@ -1,0 +1,1884 @@
+<?xml version="1.0" ?>
+<Falagard version="7">
+	<!--  subwidgets -->
+
+     <!--
+    ***************************************************
+        StaticShared
+    ***************************************************
+    -->
+    <WidgetLook name="StaticShared">
+        <ImagerySection name="frame">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/StaticFrameTopLeft" />
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/StaticFrameTopRight" />
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/StaticFrameBottomLeft" />
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/StaticFrameBottomRight" />
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/StaticFrameLeft" />
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/StaticFrameTop" />
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/StaticFrameRight" />
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/StaticFrameBottom" />
+                <ColourRectProperty name="FrameColours" />
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="background">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/StaticFrameLeft" dimension="Width" />
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/StaticFrameTop" dimension="Height" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/StaticFrameRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/StaticFrameBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="background_noframe">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        IconButton
+    ***************************************************
+    -->
+    <WidgetLook name="IconButton">
+        <PropertyDefinition name="IconImage" redrawOnWrite="true" type="Image" />
+        <PropertyDefinition name="IconColours" initialValue="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" redrawOnWrite="true" type="ColourRect" />
+        <ImagerySection name="icon">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                    </Dim>
+                </Area>
+                <ImageProperty name="IconImage" />
+                <ColourRectProperty name="IconColours" />
+                <VertFormat type="CentreAligned" />
+                <HorzFormat type="CentreAligned" />
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section look="Button" section="normal" />
+                <Section section="icon" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section look="Button" section="hover" />
+                <Section section="icon" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Pushed">
+            <Layer>
+                <Section look="Button" section="pushed" />
+                <Section section="icon" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section look="Button" section="disabled">
+                    <Colours topLeft="FFDFDFDF" topRight="FFDFDFDF" bottomLeft="FFDFDFDF" bottomRight="FFDFDFDF" />
+                </Section>
+                <Section section="icon" />
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    
+    <!--
+    ***************************************************
+        VerticalScrollbarThumb
+    ***************************************************
+    -->
+    <WidgetLook name="VerticalScrollbarThumb">
+        <Property name="VertFree" value="true"/>
+        <Property name="MinSize" value="{{0,0},{0,16}}"/>
+        <Property name="CursorInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <ImagerySection name="normal">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/ButtonNormalTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/ButtonNormalTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/ButtonNormalBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/ButtonNormalBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/ButtonNormalLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/ButtonNormalTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/ButtonNormalRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/ButtonNormalBottom"/>
+            </FrameComponent>
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonNormalLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonNormalTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonNormalRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonNormalBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="hover">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/ButtonHoverTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/ButtonHoverTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/ButtonHoverBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/ButtonHoverBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/ButtonHoverLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/ButtonHoverTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/ButtonHoverRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/ButtonHoverBottom"/>
+            </FrameComponent>
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonHoverLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonHoverTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonHoverRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonHoverBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFCFD9CF" bottomLeft="FFF2FFF2" topRight="FFF2FFF2" bottomRight="FFCFD9CF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="pushed">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/ButtonPushedTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/ButtonPushedTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/ButtonPushedBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/ButtonPushedBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/ButtonPushedLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/ButtonPushedTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/ButtonPushedRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/ButtonPushedBottom"/>
+            </FrameComponent>
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="gripper">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/VertScrollbarGrip"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal"/>
+                <Section section="gripper">
+                    <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="hover"/>
+                <Section section="gripper">
+                    <Colours topLeft="FFCFD9CF" bottomLeft="FFF2FFF2" topRight="FFF2FFF2" bottomRight="FFCFD9CF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Pushed">
+            <Layer>
+                <Section section="pushed"/>
+                <Section section="gripper">
+                    <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    
+    <!--
+    ***************************************************
+        VerticalScrollbar
+    ***************************************************
+    -->
+    <WidgetLook name="VerticalScrollbar">
+        <Property name="VerticalScrollbar" value="true"/>
+        <Property name="Size" value="{{0, 32}, {1, 0}}" />
+        <NamedArea name="ThumbTrackArea">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <UnifiedDim scale="1.0" type="RightEdge"/>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1.0" type="BottomEdge"/>
+                        <UnifiedDim scale="1" type="Width"/>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <Child nameSuffix="__auto_incbtn__" type="IconButton">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+                <Dim type="Height">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+            </Area>
+            <VertAlignment type="BottomAligned"/>
+            <Property name="IconImage" value="MGE_GUI_ImageSet/LargeDownArrow"/>
+        </Child>
+        <Child nameSuffix="__auto_decbtn__" type="IconButton">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+                <Dim type="Height">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+            </Area>
+            <Property name="IconImage" value="MGE_GUI_ImageSet/LargeUpArrow"/>
+        </Child>
+        <Child nameSuffix="__auto_thumb__" type="VerticalScrollbarThumb">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <UnifiedDim scale="1" type="Width"/>
+                </Dim>
+                <Dim type="Height">
+                    <OperatorDim op="Multiply">
+                        <OperatorDim op="Min">
+                            <OperatorDim op="Divide">
+                                <PropertyDim name="PageSize"/>
+                                <PropertyDim name="DocumentSize"/>
+                            </OperatorDim>
+                            <AbsoluteDim value="1"/>
+                        </OperatorDim>
+                        <OperatorDim op="Subtract">
+                            <OperatorDim op="Subtract">
+                                <UnifiedDim scale="1" type="Height"/>
+                                <WidgetDim widget="__auto_decbtn__" dimension="Height"/>
+                            </OperatorDim>
+                            <WidgetDim widget="__auto_incbtn__" dimension="Height"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </Child>
+        <ImagerySection name="main">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/LargeUpArrow" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1.0" type="RightEdge"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1.0" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/LargeDownArrow" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="main">
+                    <Colours topLeft="FFDFDFDF" bottomLeft="FFDFDFDF" topRight="FFDFDFDF" bottomRight="FFDFDFDF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="main">
+                    <Colours topLeft="FFBFBFBF" bottomLeft="FFBFBFBF" topRight="FFBFBFBF" bottomRight="FFBFBFBF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    
+    <!--
+    ***************************************************
+        HorizontalScrollbarThumb
+    ***************************************************
+    -->
+    <WidgetLook name="HorizontalScrollbarThumb">
+        <Property name="HorzFree" value="true"/>
+        <Property name="MinSize" value="{{0,16},{0,0}}"/>
+        <Property name="CursorInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <ImagerySection name="normal">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/ButtonNormalTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/ButtonNormalTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/ButtonNormalBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/ButtonNormalBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/ButtonNormalLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/ButtonNormalTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/ButtonNormalRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/ButtonNormalBottom"/>
+            </FrameComponent>
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonNormalLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonNormalTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonNormalRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonNormalBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="hover">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/ButtonHoverTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/ButtonHoverTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/ButtonHoverBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/ButtonHoverBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/ButtonHoverLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/ButtonHoverTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/ButtonHoverRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/ButtonHoverBottom"/>
+            </FrameComponent>
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonHoverLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonHoverTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonHoverRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonHoverBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFCFD9CF" bottomLeft="FFF2FFF2" topRight="FFF2FFF2" bottomRight="FFCFD9CF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="pushed">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1.0" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1.0" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/ButtonPushedTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/ButtonPushedTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/ButtonPushedBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/ButtonPushedBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/ButtonPushedLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/ButtonPushedTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/ButtonPushedRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/ButtonPushedBottom"/>
+            </FrameComponent>
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="gripper">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/ButtonPushedTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/ButtonPushedBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/HorzScrollbarGrip"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="CentreAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal"/>
+                <Section section="gripper">
+                    <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="hover"/>
+                <Section section="gripper">
+                    <Colours topLeft="FFCFD9CF" bottomLeft="FFF2FFF2" topRight="FFF2FFF2" bottomRight="FFCFD9CF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Pushed">
+            <Layer>
+                <Section section="pushed"/>
+                <Section section="gripper">
+                    <Colours topLeft="FFAFAFAF" bottomLeft="FFFFFFFF" topRight="FFFFFFFF" bottomRight="FFAFAFAF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    
+    <!--
+    ***************************************************
+        HorizontalScrollbar
+    ***************************************************
+    -->
+    <WidgetLook name="HorizontalScrollbar">
+        <Property name="Size" value="{{1, 0}, {0, 32}}" />
+        <NamedArea name="ThumbTrackArea">
+            <Area>
+                <Dim type="LeftEdge">
+                    <UnifiedDim scale="1" type="Height"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1.0" type="RightEdge"/>
+                        <UnifiedDim scale="1" type="Height"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <UnifiedDim scale="1.0" type="BottomEdge"/>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <Child nameSuffix="__auto_incbtn__" type="IconButton">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <UnifiedDim scale="1" type="Height"/>
+                </Dim>
+                <Dim type="Height">
+                    <UnifiedDim scale="1" type="Height"/>
+                </Dim>
+            </Area>
+            <HorzAlignment type="RightAligned"/>
+            <Property name="IconImage" value="MGE_GUI_ImageSet/LargeRightArrow"/>
+        </Child>
+        <Child nameSuffix="__auto_decbtn__" type="IconButton">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <UnifiedDim scale="1" type="Height"/>
+                </Dim>
+                <Dim type="Height">
+                    <UnifiedDim scale="1" type="Height"/>
+                </Dim>
+            </Area>
+            <Property name="IconImage" value="MGE_GUI_ImageSet/LargeLeftArrow"/>
+        </Child>
+        <Child nameSuffix="__auto_thumb__" type="HorizontalScrollbarThumb">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <OperatorDim op="Multiply">
+                        <OperatorDim op="Divide">
+                            <PropertyDim name="PageSize"/>
+                            <PropertyDim name="DocumentSize"/>
+                        </OperatorDim>
+                        <OperatorDim op="Subtract">
+                            <OperatorDim op="Subtract">
+                                <UnifiedDim scale="1" type="Width"/>
+                                <WidgetDim widget="__auto_decbtn__" dimension="Width"/>
+                            </OperatorDim>
+                            <WidgetDim widget="__auto_incbtn__" dimension="Width"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Height">
+                    <UnifiedDim scale="1" type="Height"/>
+                </Dim>
+            </Area>
+        </Child>
+        <ImagerySection name="main">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/LargeLeftArrow" dimension="Height"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1.0" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/LargeRightArrow" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1.0" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/Background"/>
+                <Colours topLeft="FFDFDFDF" bottomLeft="FFDFDFDF" topRight="FFDFDFDF" bottomRight="FFDFDFDF"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="main"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="main"/>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    
+    <!--
+    ***************************************************
+        ComboDropList
+    ***************************************************
+    -->
+    <WidgetLook name="ComboDropList">
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <Property name="SelectionBrushImage" value="MGE_GUI_ImageSet/Background" />
+        <NamedArea name="ItemRenderingArea">
+            <Area>
+                <Dim type="LeftEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameLeft" dimension="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameTop" dimension="Height"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                        <ImageDim name="MGE_GUI_ImageSet/StaticFrameRight" dimension="Width"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                        <ImageDim name="MGE_GUI_ImageSet/StaticFrameBottom" dimension="Height"/>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="ItemRenderingAreaHScroll">
+            <Area>
+                <Dim type="LeftEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameLeft" dimension="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameTop" dimension="Height"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                        <ImageDim name="MGE_GUI_ImageSet/StaticFrameRight" dimension="Width"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <UnifiedDim scale="1" type="BottomEdge" offset="-16"/>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="ItemRenderingAreaVScroll">
+            <Area>
+                <Dim type="LeftEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameLeft" dimension="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameTop" dimension="Height"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <UnifiedDim scale="1" type="RightEdge" offset="-16"/>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                        <ImageDim name="MGE_GUI_ImageSet/StaticFrameBottom" dimension="Height"/>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="ItemRenderingAreaHVScroll">
+            <Area>
+                <Dim type="LeftEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameLeft" dimension="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/StaticFrameTop" dimension="Height"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <UnifiedDim scale="1" type="RightEdge" offset="-16"/>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <UnifiedDim scale="1" type="BottomEdge" offset="-16"/>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <Child nameSuffix="__auto_hscrollbar__" type="HorizontalScrollbar">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <UnifiedDim scale="1" type="Width" offset="-16"/>
+                </Dim>
+                <Dim type="Height">
+                    <AbsoluteDim value="16"/>
+                </Dim>
+            </Area>
+            <VertAlignment type="BottomAligned"/>
+        </Child>
+        <Child nameSuffix="__auto_vscrollbar__" type="VerticalScrollbar">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <AbsoluteDim value="16"/>
+                </Dim>
+                <Dim type="Height">
+                    <UnifiedDim scale="1" type="Height"/><!-- MGE: Visual: don't add offset="-16" -->
+                </Dim>
+            </Area>
+            <HorzAlignment type="RightAligned"/>
+        </Child>
+        <ImagerySection name="main">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/StaticFrameTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/StaticFrameTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/StaticFrameBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/StaticFrameBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/StaticFrameLeft"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/StaticFrameRight"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/StaticFrameTop"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/StaticFrameBottom"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/Background"/>
+            </FrameComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="main"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="main"/>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        ListHeader
+    ***************************************************
+    -->
+    <WidgetLook name="ListHeader">
+        <Property name="SegmentWidgetType" value="ListHeaderSegment" />
+        <Property name="CursorInputPropagationEnabled" value="true" />
+        <StateImagery name="Enabled" />
+        <StateImagery name="Disabled" />
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        ListHeaderSegment
+    ***************************************************
+    -->
+    <WidgetLook name="ListHeaderSegment">
+        <Property name="SizingCursorImage" value="MGE_GUI_ImageSet/MouseEsWeCursor"/>
+        <Property name="MovingCursorImage" value="MGE_GUI_ImageSet/MouseMoveCursor"/>
+        <Property name="CursorInputPropagationEnabled" value="true"/>
+        <ImagerySection name="segment">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/HeaderSplitter" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/HeaderMainBrush"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="splitter">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/HeaderSplitter"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="RightAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="ascend_icon">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="3"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="3"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <ImageDim name="MGE_GUI_ImageSet/SmallUpArrow" dimension="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <ImageDim name="MGE_GUI_ImageSet/SmallUpArrow" dimension="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/SmallDownArrow"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="descend_icon">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="3"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="3"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <ImageDim name="MGE_GUI_ImageSet/SmallDownArrow" dimension="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <ImageDim name="MGE_GUI_ImageSet/SmallDownArrow" dimension="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/SmallUpArrow"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="label">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/SmallUpArrow" dimension="Width"/>
+                            <AbsoluteDim value="5"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <VertFormat type="CentreAligned"/>
+            </TextComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="segment">
+                    <Colours topLeft="FFDDDDDD" bottomLeft="FFDDDDDD" topRight="FFDDDDDD" bottomRight="FFDDDDDD"/>
+                </Section>
+                <Section section="splitter">
+                    <Colours topLeft="FFDDDDDD" bottomLeft="FFDDDDDD" topRight="FFDDDDDD" bottomRight="FFDDDDDD"/>
+                </Section>
+                <Section section="label">
+                    <Colours topLeft="FF000000" bottomLeft="FF000000" topRight="FF000000" bottomRight="FF000000"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="segment">
+                    <Colours topLeft="FFEFEFEF" bottomLeft="FFEFEFEF" topRight="FFEFEFEF" bottomRight="FFEFEFEF"/>
+                </Section>
+                <Section section="splitter">
+                    <Colours topLeft="FFDDDDDD" bottomLeft="FFDDDDDD" topRight="FFDDDDDD" bottomRight="FFDDDDDD"/>
+                </Section>
+                <Section section="label">
+                    <Colours topLeft="FF000000" bottomLeft="FF000000" topRight="FF000000" bottomRight="FF000000"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="SplitterHover">
+            <Layer>
+                <Section section="segment">
+                    <Colours topLeft="FFDDDDDD" bottomLeft="FFDDDDDD" topRight="FFDDDDDD" bottomRight="FFDDDDDD"/>
+                </Section>
+                <Section section="splitter">
+                    <Colours topLeft="FFEFEFEF" bottomLeft="FFEFEFEF" topRight="FFEFEFEF" bottomRight="FFEFEFEF"/>
+                </Section>
+                <Section section="label">
+                    <Colours topLeft="FF000000" bottomLeft="FF000000" topRight="FF000000" bottomRight="FF000000"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DragGhost" clipped="false">
+            <Layer priority="1">
+                <Section section="segment">
+                    <Colours topLeft="7FEFEFEF" bottomLeft="7FEFEFEF" topRight="7FEFEFEF" bottomRight="7FEFEFEF"/>
+                </Section>
+                <Section section="splitter">
+                    <Colours topLeft="7FDDDDDD" bottomLeft="7FDDDDDD" topRight="7FDDDDDD" bottomRight="7FDDDDDD"/>
+                </Section>
+                <Section section="label">
+                    <Colours topLeft="7F000000" bottomLeft="7F000000" topRight="7F000000" bottomRight="7F000000"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="AscendingSortIcon">
+            <Layer>
+                <Section section="ascend_icon"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DescendingSortIcon">
+            <Layer>
+                <Section section="descend_icon"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="GhostAscendingSortIcon" clipped="false">
+            <Layer priority="1">
+                <Section section="ascend_icon">
+                    <Colours topLeft="90FFFFFF" bottomLeft="90FFFFFF" topRight="90FFFFFF" bottomRight="90FFFFFF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="GhostDescendingSortIcon" clipped="false">
+            <Layer priority="1">
+                <Section section="descend_icon">
+                    <Colours topLeft="90FFFFFF" bottomLeft="90FFFFFF" topRight="90FFFFFF" bottomRight="90FFFFFF"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled"/>
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        Titlebar
+    ***************************************************
+    -->
+    <WidgetLook name="Titlebar">
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="CaptionColour"/>
+        <Property name="NonClient" value="true"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <ImagerySection name="normal">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/TitlebarTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/TitlebarTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/TitlebarBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/TitlebarBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/TitlebarLeft"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/TitlebarTop"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/TitlebarRight"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/TitlebarBottom"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/TitlebarFill"/>
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="caption">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="12"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <WidgetDim dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+                <ColourProperty name="CaptionColour"/>
+                <VertFormat type="CentreAligned"/>
+            </TextComponent>
+        </ImagerySection>
+        <StateImagery name="Active">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FFA7C7FF" bottomLeft="FFA7C7FF" topRight="FFA7C7FF" bottomRight="FFA7C7FF"/>
+                </Section>
+                <Section section="caption"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Inactive">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FFEFEFEF" bottomLeft="FFEFEFEF" topRight="FFEFEFEF" bottomRight="FFEFEFEF"/>
+                </Section>
+                <Section section="caption"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FFEFEFEF" bottomLeft="FFEFEFEF" topRight="FFEFEFEF" bottomRight="FFEFEFEF"/>
+                </Section>
+                <Section section="caption"/>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        SystemButton
+    ***************************************************
+    -->
+    <WidgetLook name="SystemButton">
+        <PropertyDefinition name="NormalImage" initialValue="" redrawOnWrite="true" type="Image" />
+        <PropertyDefinition name="HoverImage" initialValue="" redrawOnWrite="true" type="Image" />
+        <PropertyDefinition name="PushedImage" initialValue="" redrawOnWrite="true" type="Image" />
+        <Property name="NonClient" value="true" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <ImagerySection name="normal">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                    </Dim>
+                </Area>
+                <ImageProperty name="NormalImage" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="hover">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                    </Dim>
+                </Area>
+                <ImageProperty name="HoverImage" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="pushed">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0" />
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                    </Dim>
+                </Area>
+                <ImageProperty name="PushedImage" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Normal">
+            <Layer>
+                <Section section="normal" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Hover">
+            <Layer>
+                <Section section="hover" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Pushed">
+            <Layer>
+                <Section section="pushed" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="normal">
+                    <Colours topLeft="FFDFDFDF" topRight="FFDFDFDF" bottomLeft="FFDFDFDF" bottomRight="FFDFDFDF" />
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        MenuItem
+    ***************************************************
+    -->
+    <WidgetLook name="MenuItem">
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="NormalTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF7F7F7F" type="ColourRect" name="DisabledTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FFA7C7FF" type="ColourRect" name="HoverColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF87A7DF" type="ColourRect" name="PushedColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="7F87A7DF" type="ColourRect" name="PushedOffColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FFEFEFEF" type="ColourRect" name="OpenedColour"/>
+        <NamedArea name="ContentSize">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <OperatorDim op="Add">
+                        <FontDim type="HorzExtent"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/MenuLeft" dimension="Width"/>
+                            <ImageDim name="MGE_GUI_ImageSet/MenuRight" dimension="Width"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Height">
+                    <OperatorDim op="Add">
+                        <FontDim type="LineSpacing"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/MenuTop" dimension="Height"/>
+                            <ImageDim name="MGE_GUI_ImageSet/MenuBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="HasPopupContentSize">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <OperatorDim op="Add">
+                        <FontDim type="HorzExtent"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/MenuLeft" dimension="Width"/>
+                            <OperatorDim op="Add">
+                                <ImageDim name="MGE_GUI_ImageSet/MenuRight" dimension="Width"/>
+                                <OperatorDim op="Multiply">
+                                    <ImageDim name="MGE_GUI_ImageSet/PopupMenuArrowLeft" dimension="Width"/>
+                                    <AbsoluteDim value="3"/>
+                                </OperatorDim>
+                            </OperatorDim>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="Height">
+                    <OperatorDim op="Add">
+                        <FontDim type="LineSpacing"/>
+                        <OperatorDim op="Add">
+                            <ImageDim name="MGE_GUI_ImageSet/MenuTop" dimension="Height"/>
+                            <ImageDim name="MGE_GUI_ImageSet/MenuBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <ImagerySection name="label">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/MenuLeft" dimension="Width"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <ImageDim name="MGE_GUI_ImageSet/MenuTop" dimension="Height"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/MenuRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge"/>
+                            <ImageDim name="MGE_GUI_ImageSet/MenuBottom" dimension="Height"/>
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="LeftAligned"/>
+            </TextComponent>
+        </ImagerySection>
+        <ImagerySection name="frame">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <UnifiedDim scale="1" type="Width"/>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/MenuTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/MenuTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/MenuBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/MenuBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/MenuLeft"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/MenuRight"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/MenuTop"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/MenuBottom"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/Background"/>
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="popup_arrow_right">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Width"/>
+                            <ImageDim name="MGE_GUI_ImageSet/PopupMenuArrowRight" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/PopupMenuArrowRight"/>
+                <Colours topLeft="FF000000" bottomLeft="FF000000" topRight="FF000000" bottomRight="FF000000"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="RightAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="popup_arrow_left">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="Width">
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="Width"/>
+                            <ImageDim name="MGE_GUI_ImageSet/PopupMenuArrowLeft" dimension="Width"/>
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="Height">
+                        <UnifiedDim scale="1" type="Height"/>
+                    </Dim>
+                </Area>
+                <Image name="MGE_GUI_ImageSet/PopupMenuArrowLeft"/>
+                <Colours topLeft="FF000000" bottomLeft="FF000000" topRight="FF000000" bottomRight="FF000000"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="RightAligned"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="EnabledNormal">
+            <Layer>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="EnabledHover">
+            <Layer>
+                <Section section="frame">
+                    <ColourProperty name="HoverColour"/>
+                </Section>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="EnabledPushed">
+            <Layer>
+                <Section section="frame">
+                    <ColourProperty name="PushedColour"/>
+                </Section>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="EnabledPushedOff">
+            <Layer>
+                <Section section="frame">
+                    <ColourProperty name="PushedOffColour"/>
+                </Section>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="EnabledPopupOpen">
+            <Layer>
+                <Section section="frame">
+                    <ColourProperty name="OpenedColour"/>
+                </Section>
+                <Section section="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledNormal">
+            <Layer>
+                <Section section="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledHover">
+            <Layer>
+                <Section section="frame"/>
+                <Section section="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledPushed">
+            <Layer>
+                <Section section="frame"/>
+                <Section section="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledPushedOff">
+            <Layer>
+                <Section section="frame"/>
+                <Section section="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledPopupOpen">
+            <Layer>
+                <Section section="frame"/>
+                <Section section="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="PopupClosedIcon">
+            <Layer>
+                <Section section="popup_arrow_right"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="PopupOpenIcon">
+            <Layer>
+                <Section section="popup_arrow_left"/>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+
+    <!--
+    ***************************************************
+        Tooltip
+    ***************************************************
+    -->
+    <WidgetLook name="Tooltip">
+        <Property name="Alpha" value="0" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <NamedArea name="TextArea">
+            <Area>
+                <Dim type="LeftEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/TooltipLeftEdge" dimension="Width"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <ImageDim name="MGE_GUI_ImageSet/TooltipTopEdge" dimension="Height"/>
+                </Dim>
+                <Dim type="RightEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1.0" type="RightEdge"/>
+                        <ImageDim name="MGE_GUI_ImageSet/TooltipRightEdge" dimension="Width"/>
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge">
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1.0" type="BottomEdge"/>
+                        <ImageDim name="MGE_GUI_ImageSet/TooltipBottomEdge" dimension="Height"/>
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <ImagerySection name="main">
+            <FrameComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+                <Image component="TopLeftCorner" name="MGE_GUI_ImageSet/TooltipTopLeft"/>
+                <Image component="TopRightCorner" name="MGE_GUI_ImageSet/TooltipTopRight"/>
+                <Image component="BottomLeftCorner" name="MGE_GUI_ImageSet/TooltipBottomLeft"/>
+                <Image component="BottomRightCorner" name="MGE_GUI_ImageSet/TooltipBottomRight"/>
+                <Image component="LeftEdge" name="MGE_GUI_ImageSet/TooltipLeftEdge"/>
+                <Image component="TopEdge" name="MGE_GUI_ImageSet/TooltipTopEdge"/>
+                <Image component="RightEdge" name="MGE_GUI_ImageSet/TooltipRightEdge"/>
+                <Image component="BottomEdge" name="MGE_GUI_ImageSet/TooltipBottomEdge"/>
+                <Image component="Background" name="MGE_GUI_ImageSet/TooltipMiddle"/>
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="label">
+            <TextComponent>
+                <Area>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+                <Colours topLeft="FF000000" bottomLeft="FF000000" topRight="FF000000" bottomRight="FF000000"/>
+                <VertFormat type="CentreAligned"/>
+                <HorzFormat type="CentreAligned"/>
+            </TextComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="main"/>
+                <Section section="label"/>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="main"/>
+                <Section section="label"/>
+            </Layer>
+        </StateImagery>
+        <AnimationDefinition duration="0.33" replayMode="once" name="FadeIn">
+            <Affector interpolator="float" property="Alpha">
+                <KeyFrame position="0" sourceProperty="Alpha"/>
+                <KeyFrame position="0.33" progression="linear" value="1"/>
+            </Affector>
+            <Subscription action="Start" event="TooltipActive"/>
+        </AnimationDefinition>
+        <AnimationDefinition duration="0.33" replayMode="once" name="FadeOut">
+            <Affector interpolator="float" property="Alpha">
+                <KeyFrame position="0" sourceProperty="Alpha"/>
+                <KeyFrame position="0.33" progression="linear" value="0"/>
+            </Affector>
+            <Affector interpolator="bool" property="Visible">
+                <KeyFrame position="0" sourceProperty="Visible"/>
+                <KeyFrame position="0.33" progression="discrete" value="false"/>
+            </Affector>
+            <Subscription action="Start" event="TooltipInactive"/>
+        </AnimationDefinition>
+    </WidgetLook>
+    
+    <!--
+    ***************************************************
+        ListboxItem
+    ***************************************************
+    -->
+    <WidgetLook name="ListboxItem">
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF000000" type="ColourRect" name="TextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FFFFFFFF" type="ColourRect" name="SelectedTextColour"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="MGE_GUI_ImageSet/Background" type="Image" name="SelectionBrush"/>
+        <PropertyDefinition redrawOnWrite="true" initialValue="FF3030FF" type="ColourRect" name="SelectionColour"/>
+        <Property name="Selectable" value="true"/>
+        <Property name="CursorInputPropagationEnabled" value="true"/>
+        <NamedArea name="ContentSize">
+            <Area>
+                <Dim type="LeftEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="TopEdge">
+                    <AbsoluteDim value="0"/>
+                </Dim>
+                <Dim type="Width">
+                    <FontDim padding="6" type="HorzExtent"/>
+                </Dim>
+                <Dim type="Height">
+                    <FontDim type="LineSpacing"/>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <ImagerySection name="label">
+            <TextComponent>
+                <Area>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="3"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge" offset="-3"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+            </TextComponent>
+        </ImagerySection>
+        <ImagerySection name="selection">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="TopEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="LeftEdge">
+                        <AbsoluteDim value="0"/>
+                    </Dim>
+                    <Dim type="RightEdge">
+                        <UnifiedDim scale="1" type="RightEdge"/>
+                    </Dim>
+                    <Dim type="BottomEdge">
+                        <UnifiedDim scale="1" type="BottomEdge"/>
+                    </Dim>
+                </Area>
+                <ImageProperty name="SelectionBrush"/>
+                <ColourProperty name="SelectionColour"/>
+                <VertFormat type="Stretched"/>
+                <HorzFormat type="Stretched"/>
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled">
+            <Layer>
+                <Section section="label">
+                    <ColourProperty name="TextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="Disabled">
+            <Layer>
+                <Section section="label">
+                    <ColourProperty name="TextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="SelectedEnabled">
+            <Layer>
+                <Section section="selection"/>
+                <Section section="label">
+                    <ColourProperty name="SelectedTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+        <StateImagery name="SelectedDisabled">
+            <Layer>
+                <Section section="selection"/>
+                <Section section="label">
+                    <ColourProperty name="SelectedTextColour"/>
+                </Section>
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+</Falagard>
